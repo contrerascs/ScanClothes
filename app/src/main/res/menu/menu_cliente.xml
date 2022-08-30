@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/Opcionestxt"
+        android:title="@string/Opcionestxt">
+
+        <menu>
+            <item
+                android:id="@+id/InicioCliente"
+                android:title="@string/InicioCliente"
+                android:icon="@drawable/inicio_ico">
+            </item>
+
+            <item
+                android:id="@+id/RegistrarCuenta"
+                android:title="@string/RegistrarCliente"
+                android:icon="@drawable/registrar_ico">
+            </item>
+
+            <item
+                android:id="@+id/CategoriasCliente"
+                android:title="@string/CategoriasCliente"
+                android:icon="@drawable/categoria_ico">
+            </item>
+
+            <item
+                android:id="@+id/EscanerCliente"
+                android:title="@string/EscanerCliente"
+                android:icon="@drawable/escaner_ico">
+            </item>
+
+            <item
+                android:id="@+id/SalirCliente"
+                android:title="@string/SalirCliente"
+                android:icon="@drawable/cerrar_ico">
+            </item>
+
+        </menu>
+
+    </item>
+
+</menu>

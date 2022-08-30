@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+        <!--OPCION INICIO-->
+        <item
+            android:id="@+id/InicioAdmin"
+            android:title="@string/InicioAdmin"
+            android:icon="@drawable/inicio_ico">
+
+        </item>
+
+        <!--OPCION PERFIL-->
+        <item
+            android:id="@+id/PerfilAdmin"
+            android:title="@string/PerfilAdmin"
+            android:icon="@drawable/perfil_ico">
+
+        </item>
+
+        <!--OPCION INVENTARIO-->
+        <item
+            android:id="@+id/InventarioAdmin"
+            android:title="@string/InventarioAdmin"
+            android:icon="@drawable/inventario_ico">
+
+        </item>
+
+        <!--OPCION CERRAR SESION-->
+        <item
+            android:id="@+id/CerrarSesion"
+            android:title="@string/CerrarSesion"
+            android:icon="@drawable/cerrar_ico">
+
+        </item>
+
+    </group>
+
+</menu>

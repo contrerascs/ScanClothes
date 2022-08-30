@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "422752194183",
+    "project_id": "scanclothes-62082",
+    "storage_bucket": "scanclothes-62082.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422752194183:android:148237747370a9d27a7222",
+        "android_client_info": {
+          "package_name": "com.example.scanclothes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422752194183-c7l9vkjrqog395qutp7htijvmb77vh6c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scanclothes",
+            "certificate_hash": "85291397728e11a8eb9e90a0e1d7e2b483ef7dac"
+          }
+        },
+        {
+          "client_id": "422752194183-9g3ui5rhrqf0ku29218a866ckjqmm10o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcAlYI_gBwODczdCFWdmAOG9ZuPcLqmzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422752194183-9g3ui5rhrqf0ku29218a866ckjqmm10o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
