@@ -9,41 +9,41 @@
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:padding="15dp"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        android:padding="15dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/carga"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:src="@drawable/carga">
 
         </androidx.appcompat.widget.AppCompatImageView>
 
         <Button
-            android:layout_marginTop="10dp"
             android:id="@+id/IngresarCliente"
-            android:text="@string/IngresarCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:background="#08088A">
+            android:layout_marginTop="10dp"
+            android:background="#08088A"
+            android:text="@string/IngresarCliente"
+            android:textColor="@color/white">
 
         </Button>
 
         <Button
-            android:layout_marginTop="15dp"
             android:id="@+id/RegistrarCliente"
-            android:text="@string/RegistrarCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:background="#08088A">
+            android:layout_marginTop="15dp"
+            android:background="#08088A"
+            android:text="@string/RegistrarCliente"
+            android:textColor="@color/white">
 
         </Button>
 
