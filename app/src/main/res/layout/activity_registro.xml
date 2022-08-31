@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".FragmentosAdministrador.RegistroAdmin">
+    tools:context=".Registro">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical"
         android:padding="15dp">
 
         <!--REGISTRO TXT-->
         <TextView
-            android:text="@string/RegistroTXT"
-            android:gravity="center"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/RegistroTXT"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:textStyle="bold">
 
         </TextView>
 
@@ -36,10 +37,10 @@
             <!--FECHA DE REGISTRO TXT-->
             <TextView
                 android:id="@+id/FechaRegistro"
-                android:text="@string/FechaRegistro"
-                android:textColor="#000"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:text="@string/FechaRegistro"
+                android:textColor="#000">
 
             </TextView>
 
@@ -58,23 +59,23 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/administrador"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:src="@drawable/carga">
 
         </androidx.appcompat.widget.AppCompatImageView>
 
         <!--CORREO ELECTRONICO-->
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <EditText
                 android:id="@+id/Correo"
-                android:hint="@string/Correo"
-                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/Correo"
+                android:inputType="textEmailAddress">
 
             </EditText>
 
@@ -88,10 +89,10 @@
 
             <EditText
                 android:id="@+id/Password"
-                android:hint="@string/Password"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/Password"
+                android:inputType="textPassword">
 
             </EditText>
 
@@ -104,10 +105,10 @@
 
             <EditText
                 android:id="@+id/Nombre"
-                android:hint="@string/Nombre"
-                android:inputType="textCapWords|textAutoCorrect"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/Nombre"
+                android:inputType="textCapWords|textAutoCorrect">
 
             </EditText>
 
@@ -120,10 +121,10 @@
 
             <EditText
                 android:id="@+id/Apellidos"
-                android:hint="@string/Apellidos"
-                android:inputType="textCapWords|textAutoCorrect"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/Apellidos"
+                android:inputType="textCapWords|textAutoCorrect">
 
             </EditText>
 
@@ -136,10 +137,10 @@
 
             <EditText
                 android:id="@+id/Edad"
-                android:hint="@string/Edad"
-                android:inputType="number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/Edad"
+                android:inputType="number">
 
             </EditText>
 
@@ -148,16 +149,16 @@
         <!--BOTON PARA REGISTRAR-->
         <Button
             android:id="@+id/Registrar"
-            android:text="@string/Registrar"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:textSize="22dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#08088A">
+            android:layout_marginTop="10dp"
+            android:background="#08088A"
+            android:text="@string/Registrar"
+            android:textColor="@color/white"
+            android:textSize="22dp">
 
         </Button>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</ScrollView>
+</RelativeLayout>

@@ -17,10 +17,12 @@
     <!--MENU CLIENTE-->
     <string name="Opcionestxt">Opciones</string>
     <string name="InicioCliente">Inicio</string>
-    <string name="RegistrarCliente">Registrar como administrador</string>
+    <string name="IngresarRegistrar">Ingresar/Registrarte</string>
     <string name="EscanerCliente">Escáner</string>
     <string name="CategoriasCliente">Categorias</string>
     <string name="SalirCliente">Salir</string>
+    <string name="IngresarCliente">Ingresar</string>
+    <string name="RegistrarCliente">Registrarse</string>
 
     <!--REGISTRO DE ADMINISTRADOR-->
     <string name="RegistroTXT">Registro de administrador</string>
@@ -31,6 +33,10 @@
     <string name="Edad">Edad</string>
     <string name="FechaRegistro">Fecha de registro</string>
     <string name="Registrar">registrar</string>
+
+    <!--LOGIN DE ADMINISTRADORES-->
+    <string name="LoginTXT">Inicia sesión</string>
+    <string name="Ingresar">Ingresar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

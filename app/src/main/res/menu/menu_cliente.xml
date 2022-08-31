@@ -15,8 +15,8 @@
             </item>
 
             <item
-                android:id="@+id/RegistrarCuenta"
-                android:title="@string/RegistrarCliente"
+                android:id="@+id/IngresarRegistrar"
+                android:title="@string/IngresarRegistrar"
                 android:icon="@drawable/registrar_ico">
             </item>
 

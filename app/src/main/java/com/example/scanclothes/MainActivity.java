@@ -11,12 +11,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.scanclothes.FragmentosAdministrador.InicioAdmin;
-import com.example.scanclothes.FragmentosAdministrador.InventarioAdmin;
-import com.example.scanclothes.FragmentosAdministrador.PerfilAdmin;
-import com.example.scanclothes.FragmentosAdministrador.RegistroAdmin;
 import com.example.scanclothes.FragmentosCliente.CategoriasCliente;
 import com.example.scanclothes.FragmentosCliente.EscanerCliente;
+import com.example.scanclothes.FragmentosCliente.IngresarRegistrar;
 import com.example.scanclothes.FragmentosCliente.InicioCliente;
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,9 +57,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new InicioCliente()).commit();
                 break;
 
-            case R.id.RegistrarCuenta:
+            case R.id.IngresarRegistrar:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contairner,
-                        new RegistroAdmin()).commit();
+                        new IngresarRegistrar()).commit();
                 break;
 
             case R.id.CategoriasCliente:

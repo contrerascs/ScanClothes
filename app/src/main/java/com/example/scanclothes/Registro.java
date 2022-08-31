@@ -1,12 +1,12 @@
-package com.example.scanclothes.FragmentosAdministrador;
+package com.example.scanclothes;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.scanclothes.MainActivityAdministrador;
-import com.example.scanclothes.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -30,31 +28,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
-public class RegistroAdmin extends Fragment {
+public class Registro extends AppCompatActivity {
     TextView FechaRegistro;
     EditText Correo, Password, Nombre, Apellidos, Edad;
     Button Registrar;
-
     FirebaseAuth auth;
-
     ProgressDialog progressDialog;
+    ActionBar actionBar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_registro_admin, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registro);
 
-        FechaRegistro = view.findViewById(R.id.FechaRegistro);
-        Correo = view.findViewById(R.id.Correo);
-        Password = view.findViewById(R.id.Password);
-        Nombre = view.findViewById(R.id.Nombre);
-        Apellidos = view.findViewById(R.id.Apellidos);
-        Edad = view.findViewById(R.id.Edad);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
-        Registrar = view.findViewById(R.id.Registrar);
+        FechaRegistro = findViewById(R.id.FechaRegistro);
+        Correo = findViewById(R.id.Correo);
+        Password = findViewById(R.id.Password);
+        Nombre = findViewById(R.id.Nombre);
+        Apellidos = findViewById(R.id.Apellidos);
+        Edad = findViewById(R.id.Edad);
+        Registrar = findViewById(R.id.Registrar);
 
         auth = FirebaseAuth.getInstance(); //Inicializando Firebase Authentication
 
@@ -63,43 +60,37 @@ public class RegistroAdmin extends Fragment {
         String SFecha = fecha.format(date); //CONVERTIR FECHA A STRING
         FechaRegistro.setText(SFecha);
 
-        //AL CLIENTE EN REGISTRAR
-        Registrar.setOnClickListener(new View.OnClickListener() {
+        Registrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //CONVERTIMOS A STRING LOS EDIT TEXT
                 String correo = Correo.getText().toString();
                 String pass = Password.getText().toString();
                 String nombre = Nombre.getText().toString();
                 String apellidos = Apellidos.getText().toString();
                 String edad = Edad.getText().toString();
 
-                if(correo.equals("")||pass.equals("")||nombre.equals("")|apellidos.equals("")
-                        ||edad.equals("")){
-                    Toast.makeText(getActivity(),"Por favor llena todos los campos",Toast.LENGTH_SHORT).show();
-                }else{
+                if (correo.equals("") || pass.equals("") || nombre.equals("") | apellidos.equals("")
+                        || edad.equals("")) {
+                    Toast.makeText(Registro.this, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show();
+                } else {
                     //VALIDACION DEL CORREO
-                    if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
+                    if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
                         Correo.setError("Correo inválido");
                         Correo.setFocusable(true);
-                    }else if(pass.length()<6){
+                    } else if (pass.length() < 6) {
                         Password.setError("Contraseña muy debil");
                         Password.setFocusable(true);
-                    }else{
-                        RegistroAdministradores(correo,pass);
+                    } else {
+                        RegistroAdministradores(correo, pass);
                     }
                 }
             }
         });
-
-        progressDialog = new ProgressDialog(getActivity());
+        progressDialog = new ProgressDialog(Registro.this);
         progressDialog.setMessage("Registrado, espere por favor");
         progressDialog.setCancelable(false);
-
-        return view;
     }
 
-    //METODO PARA REGISTRAR ADMINISTRADORES
     private void RegistroAdministradores(String correo, String pass) {
         progressDialog.show();
         auth.createUserWithEmailAndPassword(correo,pass)
@@ -133,19 +124,25 @@ public class RegistroAdmin extends Fragment {
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference reference = database.getReference("BASE DE DATOS ADMINISTRADORES");
                             reference.child(UID).setValue(Administradores);
-                            startActivity(new Intent(getActivity(), MainActivityAdministrador.class));
-                            Toast.makeText(getActivity(),"Registro exitoso", Toast.LENGTH_SHORT).show();
-                            getActivity().finish();
+                            startActivity(new Intent(Registro.this, MainActivityAdministrador.class));
+                            Toast.makeText(Registro.this,"Registro exitoso", Toast.LENGTH_SHORT).show();
+                            finish();
                         }else{
                             progressDialog.dismiss();
-                            Toast.makeText(getActivity(), "Ha ocurriodo un error",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Registro.this, "Ha ocurriodo un error",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registro.this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }
