@@ -1,14 +1,15 @@
 package com.example.scanclothes.CategoriasAdministrador.OtonoA;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scanclothes.R;
 
@@ -38,7 +39,8 @@ public class OtonoA extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.Agregar:
-                Toast.makeText(this,"Agregar imagen", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Agregar imagen", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(OtonoA.this,AgregarOtono.class));
                 break;
 
             case R.id.Vista:

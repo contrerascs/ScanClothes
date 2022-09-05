@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".CategoriasAdministrador.OtonoA.AgregarOtono">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--TXT-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/NombreTXTInvierno">
+
+            </TextView>
+
+            <!--NOMBRE DE LA PRENDA-->
+            <EditText
+                android:id="@+id/NombreOtoño"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/NombreInvierno"
+                android:inputType="textCapWords|textAutoCorrect">
+
+            </EditText>
+
+            <!--DESCRIPCION DE LA PRENDA-->
+            <EditText
+                android:id="@+id/DescripcionPrendaOto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/DescripcionPrendaOto"
+                android:inputType="textCapWords|textAutoCorrect">
+
+            </EditText>
+
+            <!--VISTAS-->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--ICONO-->
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/vista_ico">
+
+                </androidx.constraintlayout.utils.widget.ImageFilterView>
+
+                <!--NUMERO DE VISTAS SE INICIALIZA EN 0-->
+                <TextView
+                    android:id="@+id/VistaOtono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/VistaOtoño"
+                    android:textSize="20sp">
+
+                </TextView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--ICONO PARA ABRIR GALERIA-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ImagenPrendaOto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/imagen_ico">
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+        <!--BOTON PARA AGREGAR PRENDA-->
+        <Button
+            android:id="@+id/AgregarPrendaOto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_personalizado"
+            android:text="@string/AgregarPrendaOto"
+            android:textColor="@color/white">
+
+        </Button>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

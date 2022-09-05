@@ -1,4 +1,4 @@
-package com.example.scanclothes.CategoriasAdministrador.InviernoA;
+package com.example.scanclothes.CategoriasAdministrador.OtonoA;
 
 import android.content.Context;
 import android.view.View;
@@ -12,21 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.scanclothes.R;
 import com.squareup.picasso.Picasso;
 
-public class ViewHolderInvierno extends RecyclerView.ViewHolder {
+public class ViewHolderOtono extends RecyclerView.ViewHolder {
     View mView;
 
-    private ViewHolderInvierno.ClickListener mClickListener;
+    private ViewHolderOtono.ClickListener mClickListener;
 
     public interface ClickListener{
         void OnIntemClick(View view, int position); //ADMIN PRESIONA NORMAL EL ITEM
         void OnIntemLongClick(View view, int position); //ADMIN MANTIENE PRESIONADO EL ITEM
     }
 
-    public  void setOnClickListener(ViewHolderInvierno.ClickListener clickListener){
+    public  void setOnClickListener(ViewHolderOtono.ClickListener clickListener){
         mClickListener = clickListener;
     }
 
-    public ViewHolderInvierno(@NonNull View itemView) {
+    public ViewHolderOtono(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
 
@@ -46,31 +46,31 @@ public class ViewHolderInvierno extends RecyclerView.ViewHolder {
         });
     }
 
-    public void SeteoInvierno(Context context, String nombre, int vista, String imagen, String descripcion){
-        ImageView ImagenInvierno;
-        TextView NombreImagenInvierno;
-        TextView VistaInviernos;
-        TextView DescripcionInvierno;
+    public void SeteoOtono(Context context, String nombre, int vista, String imagen, String descripcion){
+        ImageView ImagenOtono;
+        TextView NombreImagenOtono;
+        TextView VistaOtono;
+        TextView DescripcionOtono;
 
         //CONEXION CON EL ITEM
-        ImagenInvierno = mView.findViewById(R.id.ImagenInviernoItem);
-        NombreImagenInvierno = mView.findViewById(R.id.NombreImagenInviernoItem);
-        VistaInviernos = mView.findViewById(R.id.VistaInviernoItem);
-        DescripcionInvierno = mView.findViewById(R.id.DescripcionInviernoItem);
+        ImagenOtono = mView.findViewById(R.id.ImagenOtoñoItem);
+        NombreImagenOtono = mView.findViewById(R.id.NombreImagenOtoñoItem);
+        VistaOtono = mView.findViewById(R.id.VistaOtoñoItem);
+        DescripcionOtono = mView.findViewById(R.id.DescripcionOtoñoItem);
 
-        NombreImagenInvierno.setText(nombre);
+        NombreImagenOtono.setText(nombre);
 
-        DescripcionInvierno.setText(descripcion);
+        DescripcionOtono.setText(descripcion);
 
         //CONVERTIR A STRING EL PARAMETRO VISTA
         String VistaString = String.valueOf(vista);
 
-        VistaInviernos.setText(VistaString);
+        VistaOtono.setText(VistaString);
 
         //CONTROLAR POSIBLES ERRORES
         try{
             //SI LA IMAGEN FUE TRAIDA EXITOSAMENTE
-            Picasso.get().load(imagen).into(ImagenInvierno);
+            Picasso.get().load(imagen).into(ImagenOtono);
         }catch (Exception e){
             //SI LA IMAGEN NO FUE TRAIDA EXITOSAMENTE
             Toast.makeText(context, ""+e.getMessage(),Toast.LENGTH_SHORT).show();

@@ -20,7 +20,7 @@
         <!--IMAGEN-->
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ImagenInviernoItem"
+            android:id="@+id/ImagenOtoñoItem"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="200dp">
@@ -29,8 +29,8 @@
 
         <!--NOMBRE DE IMAGEN-->
         <TextView
-            android:id="@+id/NombreImagenInviernoItem"
-            android:text="@string/NombreImagenInviernoItem"
+            android:id="@+id/NombreImagenOtoñoItem"
+            android:text="@string/NombreImagenOtoñoItem"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:textSize="18sp"
@@ -41,8 +41,8 @@
         </TextView>
 
         <TextView
-            android:id="@+id/DescripcionInviernoItem"
-            android:text="@string/DescripcionInviernoItem"
+            android:id="@+id/DescripcionOtoñoItem"
+            android:text="@string/DescripcionOtoñoItem"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:textSize="18sp"
@@ -68,8 +68,8 @@
 
             <!--VISTAS DE LA IMAGEN-->
             <TextView
-                android:id="@+id/VistaInviernoItem"
-                android:text="@string/VistaInviernoItem"
+                android:id="@+id/VistaOtoñoItem"
+                android:text="@string/VistaOtoñoItem"
                 android:textColor="@color/white"
                 android:layout_marginStart="5dp"
                 android:layout_width="wrap_content"
