@@ -33,7 +33,7 @@ public class Carga extends AppCompatActivity {
             public void run() {
                 //CODIGO QUE SE EJECUTARA
                 Intent intent = new Intent(Carga.this,
-                        MainActivity.class);
+                        MainActivityAdministrador.class);
                 startActivity(intent);
                 finish();
             }

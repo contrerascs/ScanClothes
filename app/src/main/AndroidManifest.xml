@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".CategoriasAdministrador.InviernoA.AgregarInvierno"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdministrador.PrimaveraA.PrimaveraA"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdministrador.OtonoA.OtonoA"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdministrador.VeranoA.VeranoA"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasAdministrador.InviernoA.InviernoA"
+            android:exported="false" />
+        <activity
             android:name=".Registro"
             android:exported="false" />
         <activity

@@ -38,6 +38,30 @@
     <string name="LoginTXT">Inicia sesión</string>
     <string name="Ingresar">Ingresar</string>
 
+    <!--CATEGORIAS-->
+    <string name="Eligeunacategoriatxt">Elige una categoría</string>
+
+    <string name="Invierno">INVIERNO</string>
+    <string name="Otoño">OTOÑO</string>
+    <string name="Verano">VERANO</string>
+    <string name="Primavera">PRIMAVERA</string>
+
+    <!--MENU AGREGAR-->
+    <string name="Agregar">Agregar</string>
+    <string name="Vista">Vista</string>
+
+    <!--AGREGAR PRENDA DE INVIERNO-->
+    <string name="NombreTXTInvierno">Nombre de la prenda</string>
+    <string name="NombreInvierno">Escribe aquí el nombre</string>
+    <string name="VistaInvierno">0</string>
+    <string name="AgregarPrendaInv">Agregar Prenda</string>
+    <string name="DescripcionPrendaInv">Agregar Descripcion</string>
+
+    <!--ITEM DE AGREGAR PRENDA DE INVIERNO-->
+    <string name="NombreImagenInvierno"> -- </string>
+    <string name="VistaInviernoItem"> -- </string>
+    <string name="DescripcionInviernoItem"> -- </string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
