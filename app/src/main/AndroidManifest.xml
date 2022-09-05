@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".CategoriasAdministrador.PrimaveraA.AgregarPrimavera"
+            android:exported="false" />
+        <activity
             android:name=".CategoriasAdministrador.OtonoA.AgregarOtono"
             android:exported="false" />
         <activity

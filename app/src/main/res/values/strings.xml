@@ -74,6 +74,18 @@
     <string name="VistaOtoñoItem"> -- </string>
     <string name="DescripcionOtoñoItem"> -- </string>
 
+    <!--AGREGAR PRENDA DE PRIMAVERA-->
+    <string name="NombreTXTPrimavera">Nombre de la prenda</string>
+    <string name="NombrePrimavera">Escribe aquí el nombre</string>
+    <string name="VistaPrimavera">0</string>
+    <string name="AgregarPrendaPri">Agregar Prenda</string>
+    <string name="DescripcionPrendaPri">Agregar Descripcion</string>
+
+    <!--ITEM DE AGREGAR PRENDA DE INVIERNO-->
+    <string name="NombreImagenPrimaveraItem"> -- </string>
+    <string name="VistaPrimaveraItem"> -- </string>
+    <string name="DescripcionPrimaveraItem"> -- </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
