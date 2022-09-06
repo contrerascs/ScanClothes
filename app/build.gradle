@@ -41,6 +41,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.0'
     implementation 'com.google.firebase:firebase-database:20.0.6' /*BASE DE DATOS DE FIREBASE*/
     implementation 'com.google.firebase:firebase-auth:21.0.8' /*AUTENTICACION DE FIREBASE*/
     implementation 'com.squareup.picasso:picasso:2.71828' /*PARA GESTIONAR IMAGENES*/
