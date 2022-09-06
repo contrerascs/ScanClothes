@@ -9,21 +9,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scanclothes.CategoriasAdministrador.VeranoA.ViewHolderVerano;
 import com.example.scanclothes.R;
 import com.squareup.picasso.Picasso;
 
 public class ViewHolderPrimavera extends RecyclerView.ViewHolder {
     View mView;
 
-    private ViewHolderVerano.ClickListener mClickListener;
+    private ViewHolderPrimavera.ClickListener mClickListener;
 
     public interface ClickListener{
         void OnIntemClick(View view, int position); //ADMIN PRESIONA NORMAL EL ITEM
         void OnIntemLongClick(View view, int position); //ADMIN MANTIENE PRESIONADO EL ITEM
     }
 
-    public  void setOnClickListener(ViewHolderVerano.ClickListener clickListener){
+    public  void setOnClickListener(ViewHolderPrimavera.ClickListener clickListener){
         mClickListener = clickListener;
     }
 

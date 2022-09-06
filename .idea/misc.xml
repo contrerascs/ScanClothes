@@ -19,7 +19,12 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_invierno_a.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_main_administrador.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_otono.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_otono_a.xml" value="0.12360688956433637" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_primavera.xml" value="0.12360688956433637" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_primavera_a.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_registro.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_verano.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/carga.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/encabezado.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_categorias_cliente.xml" value="0.4" />
@@ -32,7 +37,7 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_login.xml" value="0.24010416666666667" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_perfil_admin.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_registro_admin.xml" value="0.4" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_invierno.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_invierno.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_otono.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_primavera.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_verano.xml" value="0.25416666666666665" />
