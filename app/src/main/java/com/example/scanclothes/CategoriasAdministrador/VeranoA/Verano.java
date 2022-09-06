@@ -1,15 +1,15 @@
-package com.example.scanclothes.CategoriasAdministrador.PrimaveraA;
+package com.example.scanclothes.CategoriasAdministrador.VeranoA;
 
-public class Primavera {
+public class Verano {
     private String nombre;
     private String descripcion;
     private String imagen;
     private int vistas;
 
-    public Primavera() {
+    public Verano() {
     }
 
-    public Primavera(String nombre, String descripcion, String imagen, int vistas) {
+    public Verano(String nombre, String descripcion, String imagen, int vistas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;

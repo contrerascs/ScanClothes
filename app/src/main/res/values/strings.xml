@@ -81,10 +81,22 @@
     <string name="AgregarPrendaPri">Agregar Prenda</string>
     <string name="DescripcionPrendaPri">Agregar Descripcion</string>
 
-    <!--ITEM DE AGREGAR PRENDA DE INVIERNO-->
+    <!--ITEM DE AGREGAR PRENDA DE PRIMAVERA-->
     <string name="NombreImagenPrimaveraItem"> -- </string>
     <string name="VistaPrimaveraItem"> -- </string>
     <string name="DescripcionPrimaveraItem"> -- </string>
+
+    <!--AGREGAR PRENDA DE VERANO-->
+    <string name="NombreTXTVerano">Nombre de la prenda</string>
+    <string name="NombreVerano">Escribe aquí el nombre</string>
+    <string name="VistaVerano">0</string>
+    <string name="AgregarPrendaVer">Agregar Prenda</string>
+    <string name="DescripcionPrendaVer">Agregar Descripcion</string>
+
+    <!--ITEM DE AGREGAR PRENDA DE VERANO-->
+    <string name="NombreImagenVeranoItem"> -- </string>
+    <string name="VistaVeranoItem"> -- </string>
+    <string name="DescripcionVeranoItem"> -- </string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

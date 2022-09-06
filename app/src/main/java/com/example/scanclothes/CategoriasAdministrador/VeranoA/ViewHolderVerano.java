@@ -1,4 +1,4 @@
-package com.example.scanclothes.CategoriasAdministrador.PrimaveraA;
+package com.example.scanclothes.CategoriasAdministrador.VeranoA;
 
 import android.content.Context;
 import android.view.View;
@@ -9,11 +9,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scanclothes.CategoriasAdministrador.VeranoA.ViewHolderVerano;
 import com.example.scanclothes.R;
 import com.squareup.picasso.Picasso;
 
-public class ViewHolderPrimavera extends RecyclerView.ViewHolder {
+public class ViewHolderVerano extends RecyclerView.ViewHolder {
     View mView;
 
     private ViewHolderVerano.ClickListener mClickListener;
@@ -27,7 +26,7 @@ public class ViewHolderPrimavera extends RecyclerView.ViewHolder {
         mClickListener = clickListener;
     }
 
-    public ViewHolderPrimavera(@NonNull View itemView) {
+    public ViewHolderVerano(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
 
@@ -48,31 +47,31 @@ public class ViewHolderPrimavera extends RecyclerView.ViewHolder {
 
     }
 
-    public void SeteoPrimavera(Context context, String nombre, int vista, String imagen, String descripcion){
-        ImageView ImagenPrimavera;
-        TextView NombreImagenPrimavera;
-        TextView VistaPrimavera;
-        TextView DescripcionPrimavera;
+    public void SeteoVerano(Context context, String nombre, int vista, String imagen, String descripcion){
+        ImageView ImagenVerano;
+        TextView NombreImagenVerano;
+        TextView VistaVerano;
+        TextView DescripcionVerano;
 
         //CONEXION CON EL ITEM
-        ImagenPrimavera = mView.findViewById(R.id.ImagenPrimaveraItem);
-        NombreImagenPrimavera = mView.findViewById(R.id.NombreImagenPrimaveraItem);
-        VistaPrimavera = mView.findViewById(R.id.VistaPrimaveraItem);
-        DescripcionPrimavera = mView.findViewById(R.id.DescripcionPrimaveraItem);
+        ImagenVerano = mView.findViewById(R.id.ImagenVeranoItem);
+        NombreImagenVerano = mView.findViewById(R.id.NombreImagenVeranoItem);
+        VistaVerano = mView.findViewById(R.id.VistaVeranoItem);
+        DescripcionVerano = mView.findViewById(R.id.DescripcionVeranoItem);
 
-        NombreImagenPrimavera.setText(nombre);
+        NombreImagenVerano.setText(nombre);
 
-        DescripcionPrimavera.setText(descripcion);
+        DescripcionVerano.setText(descripcion);
 
         //CONVERTIR A STRING EL PARAMETRO VISTA
         String VistaString = String.valueOf(vista);
 
-        VistaPrimavera.setText(VistaString);
+        VistaVerano.setText(VistaString);
 
         //CONTROLAR POSIBLES ERRORES
         try{
             //SI LA IMAGEN FUE TRAIDA EXITOSAMENTE
-            Picasso.get().load(imagen).into(ImagenPrimavera);
+            Picasso.get().load(imagen).into(ImagenVerano);
         }catch (Exception e){
             //SI LA IMAGEN NO FUE TRAIDA EXITOSAMENTE
             Toast.makeText(context, ""+e.getMessage(),Toast.LENGTH_SHORT).show();

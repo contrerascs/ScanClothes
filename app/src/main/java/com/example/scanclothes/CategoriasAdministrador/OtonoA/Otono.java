@@ -6,6 +6,10 @@ public class Otono {
     private String imagen;
     private int vistas;
 
+    public Otono() {
+
+    }
+
     public Otono(String nombre, String descripcion, String imagen, int vistas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
