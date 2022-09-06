@@ -34,14 +34,14 @@ public class ViewHolderPrimavera extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mClickListener.OnIntemClick(view, getAdapterPosition());
+                mClickListener.OnIntemClick(view, getBindingAdapterPosition());
             }
         });
 
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                mClickListener.OnIntemClick(view, getAdapterPosition());
+                mClickListener.OnIntemClick(view, getBindingAdapterPosition());
                 return true;
             }
         });
