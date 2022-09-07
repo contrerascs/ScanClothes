@@ -40,7 +40,7 @@ public class ViewHolderVerano extends RecyclerView.ViewHolder {
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                mClickListener.OnIntemClick(view, getBindingAdapterPosition());
+                mClickListener.OnIntemLongClick(view, getBindingAdapterPosition());
                 return true;
             }
         });
