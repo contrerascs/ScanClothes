@@ -96,9 +96,9 @@ public class PrimaveraA extends AppCompatActivity {
                         final String Nombre = getItem(position).getNombre();
                         final String Imagen = getItem(position).getImagen();
 
-                        //String Descripcion = getItem(position).getDescripcion();
-                        //int Vista = getItem(position).getVistas();
-                        //String vistaString = String.valueOf(Vista);
+                        String Descripcion = getItem(position).getDescripcion();
+                        int Vista = getItem(position).getVistas();
+                        String vistaString = String.valueOf(Vista);
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(PrimaveraA.this);
                         String [] opciones = {"Actualizar","Eliminar"};
@@ -106,7 +106,12 @@ public class PrimaveraA extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(i == 0){
-                                    Toast.makeText(PrimaveraA.this,"Actualizar",Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(PrimaveraA.this, AgregarPrimavera.class);
+                                    intent.putExtra("NombreEnviado",Nombre);
+                                    intent.putExtra("ImagenEnviada",Imagen);
+                                    intent.putExtra("DescripcionEnviada",Descripcion);
+                                    intent.putExtra("VistaEnviada",vistaString);
+                                    startActivity(intent);
                                 }if (i == 1){
                                     EliminarDatos(Nombre,Imagen);
                                 }

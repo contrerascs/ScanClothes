@@ -1,9 +1,12 @@
 package com.example.scanclothes.CategoriasAdministrador.PrimaveraA;
 
+import static com.google.firebase.storage.FirebaseStorage.getInstance;
+
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,12 +27,19 @@ import com.example.scanclothes.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnPausedListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
 
 public class AgregarPrimavera extends AppCompatActivity {
     EditText NombrePrimavera, DescripcionPrendaPri;
@@ -45,6 +55,7 @@ public class AgregarPrimavera extends AppCompatActivity {
     DatabaseReference DatabaseReference;
 
     ProgressDialog progressDialog;
+    String rNombre,rImagen,rDescripcion,rVista;
     int CODIGO_DE_SOLICITTUD_IMAGEN = 5;
 
     @Override
@@ -68,6 +79,27 @@ public class AgregarPrimavera extends AppCompatActivity {
         DatabaseReference = FirebaseDatabase.getInstance().getReference(RutaDeBaseDeDatos);
         progressDialog = new ProgressDialog(AgregarPrimavera.this);
 
+        Bundle intent = getIntent().getExtras();
+        if(intent!=null){
+            //RECUPERAR LOS DATOS DE LA ACTIVIDAD ANTERIOR
+            rNombre = intent.getString("NombreEnviado");
+            rImagen = intent.getString("ImagenEnviada");
+            rDescripcion = intent.getString("DescripcionEnviada");
+            rVista = intent.getString("VistaEnviada");
+
+            //SETEAR LOS DATOS EN LOS TEXTVIEW
+            NombrePrimavera.setText(rNombre);
+            VistaPrimavera.setText(rVista);
+            DescripcionPrendaPri.setText(rDescripcion);
+            Picasso.get().load(rImagen).into(ImagenPrendaPri);
+
+            //CAMBIAR EL NOMBRE EN ACTIONBAR
+            actionBar.setTitle("Actualizar");
+            String actualizar = "Actualizar";
+            //CAMBIAR EL NOMBRE DEL BOTÓN
+            AgregarPrendaPri.setText(actualizar);
+        }
+
         ImagenPrendaPri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,8 +113,93 @@ public class AgregarPrimavera extends AppCompatActivity {
         AgregarPrendaPri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //METODO PARA SUBIRUNA IMAGEN
-                SubirImagen();
+                if(AgregarPrendaPri.getText().equals("Agregar Prenda")){
+                    //METODO PARA SUBIRUNA IMAGEN
+                    SubirImagen();
+                }else {
+                    EmpezarActualizacion();
+                }
+            }
+        });
+    }
+
+    private void EmpezarActualizacion() {
+        progressDialog.setTitle("Actualizando");
+        progressDialog.setMessage("Espere Por Favor...");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        EliminarImagenAnterior();
+    }
+
+    private void EliminarImagenAnterior() {
+        StorageReference Imagen = getInstance().getReferenceFromUrl(rImagen);
+        Imagen.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                //SI LA IMAGEN SE ELIMINO
+                Toast.makeText(AgregarPrimavera.this,"La imagen anterior a sido eliminada",Toast.LENGTH_SHORT).show();
+                SubirNuevaImagen();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(AgregarPrimavera.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void SubirNuevaImagen() {
+        String nuevaImagen = System.currentTimeMillis()+".png";
+        StorageReference mStorageReference2 = mStorageReference.child(RutaDeAlmacenamiento+nuevaImagen);
+        Bitmap bitmap = ((BitmapDrawable)ImagenPrendaPri.getDrawable()).getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+        byte [] data = byteArrayOutputStream.toByteArray();
+        UploadTask uploadTask = mStorageReference2.putBytes(data);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(AgregarPrimavera.this,"Nueva imagen cargada",Toast.LENGTH_SHORT).show();
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                while (!uriTask.isSuccessful());
+                Uri downloadUri = uriTask.getResult();
+                ActualizarImagenBD(downloadUri.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(AgregarPrimavera.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void ActualizarImagenBD(final String NuevaImagen) {
+        final String nombreActualizar = NombrePrimavera.getText().toString();
+        final String descripcionActualizar = DescripcionPrendaPri.getText().toString();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("INVIERNO");
+        //CONSULTA
+        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //DATOS A ACTUALIZAR
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    ds.getRef().child("nombre").setValue(nombreActualizar);
+                    ds.getRef().child("imagen").setValue(NuevaImagen);
+                    ds.getRef().child("descripcion").setValue(descripcionActualizar);
+                }
+                progressDialog.dismiss();
+                Toast.makeText(AgregarPrimavera.this,"Actualizado Correctamente",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AgregarPrimavera.this, PrimaveraA.class));
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

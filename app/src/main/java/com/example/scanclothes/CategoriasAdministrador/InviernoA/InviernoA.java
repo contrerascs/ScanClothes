@@ -96,9 +96,9 @@ public class InviernoA extends AppCompatActivity {
                         final String Nombre = getItem(position).getNombre();
                         final String Imagen = getItem(position).getImagen();
 
-                        //String Descripcion = getItem(position).getDescripcion();
-                        //int Vista = getItem(position).getVistas();
-                        //String vistaString = String.valueOf(Vista);
+                        String Descripcion = getItem(position).getDescripcion();
+                        int Vista = getItem(position).getVistas();
+                        final String vistaString = String.valueOf(Vista);
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(InviernoA.this);
                         String [] opciones = {"Actualizar","Eliminar"};
@@ -106,7 +106,12 @@ public class InviernoA extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(i == 0){
-                                    Toast.makeText(InviernoA.this,"Actualizar",Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(InviernoA.this,AgregarInvierno.class);
+                                    intent.putExtra("NombreEnviado",Nombre);
+                                    intent.putExtra("ImagenEnviada",Imagen);
+                                    intent.putExtra("DescripcionEnviada",Descripcion);
+                                    intent.putExtra("VistaEnviada",vistaString);
+                                    startActivity(intent);
                                 }if (i == 1){
                                     EliminarDatos(Nombre,Imagen);
                                 }
