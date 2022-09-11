@@ -2,8 +2,11 @@ package com.example.scanclothes.CategoriasAdministrador.OtonoA;
 
 import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.scanclothes.CategoriasAdministrador.VeranoA.VeranoA;
 import com.example.scanclothes.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -42,6 +48,9 @@ public class OtonoA extends AppCompatActivity {
     FirebaseRecyclerAdapter<Otono, ViewHolderOtono> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Otono> options;
 
+    SharedPreferences sharedPreferences;
+    Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +66,8 @@ public class OtonoA extends AppCompatActivity {
         recyclerViewOtono.setHasFixedSize(true);
         mfirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mfirebaseDatabase.getReference("OTOÑO");
+
+        dialog = new Dialog(OtonoA.this);
 
         ListarImagenesOtono();
     }
@@ -123,9 +134,19 @@ public class OtonoA extends AppCompatActivity {
                 return viewHolderOtono;
             }
         };
-        recyclerViewOtono.setLayoutManager(new GridLayoutManager(OtonoA.this, 2));
-        firebaseRecyclerAdapter.startListening();
-        recyclerViewOtono.setAdapter(firebaseRecyclerAdapter);
+        //AL INICIAR LA ACTIVIDAD SE VAN A LISTAR DE DOS COLUMNAS
+        sharedPreferences = OtonoA.this.getSharedPreferences("OTOÑO",MODE_PRIVATE);
+        String ordenar_en = sharedPreferences.getString("Ordenar","Dos");
+        //ELEGIR EL TIPO DE VISTA
+        if (ordenar_en.equals("Dos")){
+            recyclerViewOtono.setLayoutManager(new GridLayoutManager(OtonoA.this,2));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewOtono.setAdapter(firebaseRecyclerAdapter);
+        }else if(ordenar_en.equals("Tres")){
+            recyclerViewOtono.setLayoutManager(new GridLayoutManager(OtonoA.this,3));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewOtono.setAdapter(firebaseRecyclerAdapter);
+        }
     }
 
     private void EliminarDatos(final String NombreActual, final String ImagenActual){
@@ -201,10 +222,60 @@ public class OtonoA extends AppCompatActivity {
                 break;
 
             case R.id.Vista:
-                Toast.makeText(this, "Listar imagenes", Toast.LENGTH_SHORT).show();
+                Ordenar_Imagenes();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void Ordenar_Imagenes(){
+        //CAMBIO DE LETRA
+        String ubicacion = "fuentes/CaviarDreams.ttf";
+        Typeface tf = Typeface.createFromAsset(OtonoA.this.getAssets(),
+                ubicacion);
+        //CAMBIO DE LETRA
+
+        //DECLARANDO VISTAS
+        TextView OrdenarTXT;
+        Button Dos_Columnas,Tres_Columnas;
+
+        //CONEXION CON EL CUADRO DE DIALOGO
+        dialog.setContentView(R.layout.dialog_ordenar);
+
+        //INICIALIZAR LAS VISTAS
+        OrdenarTXT = dialog.findViewById(R.id.OrdenarTXT);
+        Dos_Columnas = dialog.findViewById(R.id.Dos_Columnas);
+        Tres_Columnas = dialog.findViewById(R.id.Tres_Columnas);
+
+        //CAMBIO DE FUENTE DE LETRA
+        OrdenarTXT.setTypeface(tf);
+        Dos_Columnas.setTypeface(tf);
+        Tres_Columnas.setTypeface(tf);
+
+        //EVENTO DOS COLUMNAS
+        Dos_Columnas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Ordenar","Dos");
+                editor.apply();
+                recreate();
+                dialog.dismiss();
+            }
+        });
+
+        Tres_Columnas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Ordenar","Tres");
+                editor.apply();
+                recreate();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
