@@ -2,6 +2,7 @@ package com.example.scanclothes.CategoriasAdministrador.PrimaveraA;
 
 import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -18,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,7 +59,7 @@ public class AgregarPrimavera extends AppCompatActivity {
 
     ProgressDialog progressDialog;
     String rNombre,rImagen,rDescripcion,rVista;
-    int CODIGO_DE_SOLICITTUD_IMAGEN = 5;
+    //int CODIGO_DE_SOLICITTUD_IMAGEN = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +106,15 @@ public class AgregarPrimavera extends AppCompatActivity {
         ImagenPrendaPri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                //SDK 30
+                //Intent intent = new Intent();
+                //intent.setType("image/*");
+                //intent.setAction(Intent.ACTION_GET_CONTENT);
+                //startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITTUD_IMAGEN);
+                //SDK 31
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITTUD_IMAGEN);
+                ObtenerImagenGaleria.launch(intent);
             }
         });
 
@@ -205,7 +213,12 @@ public class AgregarPrimavera extends AppCompatActivity {
     }
 
     private void SubirImagen() {
-        if(RutaArchivoUri!=null){
+        String mNombre = NombrePrimavera.getText().toString();
+
+        //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
+        if (mNombre.equals("")||RutaArchivoUri==null){
+            Toast.makeText(AgregarPrimavera.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
+        }else{
             progressDialog.setTitle("Espere por favor");
             progressDialog.setMessage("Subiendo Imagen OTONO...");
             progressDialog.show();
@@ -220,7 +233,6 @@ public class AgregarPrimavera extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
-                            String mNombre = NombrePrimavera.getText().toString();
                             String mDescripcion = DescripcionPrendaPri.getText().toString();
                             String mVista = VistaPrimavera.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
@@ -249,9 +261,6 @@ public class AgregarPrimavera extends AppCompatActivity {
                 }
             });
         }
-        else{
-            Toast.makeText(this,"DEBE ASIGNAR UNA IMAGEN",Toast.LENGTH_SHORT).show();
-        }
     }
 
     //OBTENEMOS LA EXTENSION .JPG/.PNG
@@ -262,7 +271,7 @@ public class AgregarPrimavera extends AppCompatActivity {
     }
 
     //COMPROBAR SI LA IMAGEN SELECCIONADA POR EL ADMINISTRADOR FUE CORRECTA
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==CODIGO_DE_SOLICITTUD_IMAGEN
@@ -279,5 +288,23 @@ public class AgregarPrimavera extends AppCompatActivity {
                 Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
+
+    //SDK 31
+    //Obtener Imagen de la galeria
+    private ActivityResultLauncher<Intent> ObtenerImagenGaleria = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        RutaArchivoUri = data.getData();
+                        ImagenPrendaPri.setImageURI(RutaArchivoUri);
+                    }else{
+                        Toast.makeText(AgregarPrimavera.this,"Cancelado",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
 }
