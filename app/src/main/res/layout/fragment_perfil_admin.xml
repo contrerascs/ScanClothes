@@ -1,16 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentosAdministrador.PerfilAdmin">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="PERFIL"
-        android:gravity="center"
-        android:textSize="25sp"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="7dp">
 
-</FrameLayout>
+        <TextView
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:text="@string/PERFILADMINISTRADORTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/FOTOPERFILIMG"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/administrador"
+            android:layout_width="100dp"
+            android:layout_gravity="center"
+            android:layout_height="100dp">
+
+        </androidx.constraintlayout.utils.widget.ImageFilterView>
+
+        <TextView
+            android:text="@string/MIINFORMACIONTXT"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/UIDPERFILTXT"
+                android:text="@string/UIDPERFILTXT"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/UIDPERFIL"
+                android:text="@string/UIDPERFIL"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/NOMBREPERFILTXT"
+                android:text="@string/NOMBREPERFILTXT"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/NOMBREPERFIL"
+                android:text="@string/NOMBREPERFIL"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/APELLIDOPERFILTXT"
+                android:text="@string/APELLIDOPERFILTXT"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/APELLIDOPERFIL"
+                android:text="@string/APELLIDOPERFIL"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/EDADPERFILTXT"
+                android:text="@string/EDADPERFILTXT"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/EDADPERFIL"
+                android:text="@string/EDADPERFIL"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/CORREOPERFILTXT"
+                android:text="@string/CORREOPERFILTXT"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/CORREOPERFIL"
+                android:text="@string/CORREOPERFIL"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/PASSWORLDPERFILTXT"
+                android:text="@string/PASSWORLDPERFILTXT"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/PASSWORLDPERFIL"
+                android:text="@string/PASSWORLDPERFIL"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Button
+            android:id="@+id/ACTUALIZARPASS"
+            android:text="@string/ACTUALIZARPASS"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/editar_ico"
+            android:padding="10dp"
+            android:drawablePadding="15dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_personalizado_dos"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content">
+
+        </Button>
+
+        <Button
+            android:id="@+id/ACTUALIZARDATOS"
+            android:text="@string/ACTUALIZARDATOS"
+            android:layout_marginTop="5dp"
+            android:drawableStart="@drawable/editar_ico"
+            android:padding="10dp"
+            android:drawablePadding="15dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_personalizado_dos"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content">
+
+        </Button>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>
