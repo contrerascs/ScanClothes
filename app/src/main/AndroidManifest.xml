@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.scanclothes" >
 
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!--PERMISO AL ALMACENAMIENTO EXTERNO-->
 
     <application
@@ -13,41 +14,41 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".CategoriasAdministrador.VeranoA.AgregarVerano"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoriasAdministrador.PrimaveraA.AgregarPrimavera"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoriasAdministrador.OtonoA.AgregarOtono"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoriasAdministrador.InviernoA.AgregarInvierno"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoriasAdministrador.PrimaveraA.PrimaveraA"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoriasAdministrador.OtonoA.OtonoA"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoriasAdministrador.VeranoA.VeranoA"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CategoriasAdministrador.InviernoA.InviernoA"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Registro"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".InicioSesion"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivityAdministrador"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Carga"
