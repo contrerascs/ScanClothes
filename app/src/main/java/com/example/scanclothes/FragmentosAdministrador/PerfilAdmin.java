@@ -93,7 +93,6 @@ public class PerfilAdmin extends Fragment {
 
         BASE_DE_DATOS_ADMINISTRADORES = FirebaseDatabase.getInstance().getReference("BASE DE DATOS ADMINISTRADORES");
         BASE_DE_DATOS_ADMINISTRADORES.child(user.getUid()).addValueEventListener(new ValueEventListener() {
-
             //VISUALIZAR EN FRAGMENTO
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -127,6 +126,14 @@ public class PerfilAdmin extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        ACTUALIZARPASS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),Cambio_Pass.class));
+                getActivity().finish();
             }
         });
 

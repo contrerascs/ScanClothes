@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".FragmentosAdministrador.Cambio_Pass">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/MisCredencialesTXT"
+            android:textColor="#000"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <!--CONTRASEÑA ACTUAL TRAIDO DESDE FIREBASE-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PassActualTXT"
+                android:textColor="#000"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/PassActual"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PassActual"
+                android:textColor="#000"
+                android:textSize="20sp">
+
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--ESCRIBIR CONTRASEÑA ACTUAL-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/ActualPassET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="no"
+                android:hint="@string/ActualPassET"
+                android:inputType="textPassword">
+
+            </EditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--ESCRIBIR NUEVA CONTRASEÑA-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/NuevoPassET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/NuevoPassET"
+                android:inputType="textPassword">
+
+            </EditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--BOTON PARA CAMBIAR CONTRASEÑA-->
+        <Button
+            android:id="@+id/CAMBIARPASSBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_personalizado_dos"
+            android:text="@string/CAMBIARPASSBTN"
+            android:textColor="@color/white">
+
+        </Button>
+
+        <!--BOTON PARA IR AL INICIO DE ADMINISTRADOR-->
+        <Button
+            android:id="@+id/IRINICIOBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btn_personalizado_dos"
+            android:text="@string/IRINICIOBTN"
+            android:textColor="@color/white">
+
+        </Button>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>
