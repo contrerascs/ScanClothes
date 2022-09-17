@@ -223,7 +223,7 @@ public class AgregarInvierno extends AppCompatActivity {
             Toast.makeText(AgregarInvierno.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Espere por favor");
-            progressDialog.setMessage("Subiendo Imagen INVIERNO...");
+            progressDialog.setMessage("Subiendo Ropa De Invierno...");
             progressDialog.show();
             progressDialog.setCancelable(false);
             StorageReference storageReference2 = mStorageReference.child(RutaDeAlmacenamiento+System.currentTimeMillis()+"."+ObtenerExtensionDelArchivo(RutaArchivoUri));

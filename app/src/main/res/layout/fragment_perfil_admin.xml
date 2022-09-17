@@ -10,18 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="7dp">
+        android:padding="10dp">
 
         <TextView
             android:textSize="20sp"
             android:layout_gravity="center"
             android:text="@string/PERFILADMINISTRADORTXT"
+            android:textStyle="bold"
+            android:textColor="#0174DF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
         </TextView>
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/FOTOPERFILIMG"
             android:layout_marginTop="15dp"
             android:src="@drawable/administrador"
@@ -29,13 +31,23 @@
             android:layout_gravity="center"
             android:layout_height="100dp">
 
-        </androidx.constraintlayout.utils.widget.ImageFilterView>
+        </de.hdodenhof.circleimageview.CircleImageView>
+        
+        <View
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="2dp">
+
+        </View>
 
         <TextView
             android:text="@string/MIINFORMACIONTXT"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#0174DF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -51,7 +63,8 @@
                 android:id="@+id/UIDPERFILTXT"
                 android:text="@string/UIDPERFILTXT"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -61,7 +74,8 @@
                 android:id="@+id/UIDPERFIL"
                 android:text="@string/UIDPERFIL"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -79,7 +93,8 @@
                 android:id="@+id/NOMBREPERFILTXT"
                 android:text="@string/NOMBREPERFILTXT"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -89,7 +104,8 @@
                 android:id="@+id/NOMBREPERFIL"
                 android:text="@string/NOMBREPERFIL"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -107,7 +123,8 @@
                 android:id="@+id/APELLIDOPERFILTXT"
                 android:text="@string/APELLIDOPERFILTXT"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -117,7 +134,8 @@
                 android:id="@+id/APELLIDOPERFIL"
                 android:text="@string/APELLIDOPERFIL"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -135,7 +153,8 @@
                 android:id="@+id/EDADPERFILTXT"
                 android:text="@string/EDADPERFILTXT"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -145,7 +164,8 @@
                 android:id="@+id/EDADPERFIL"
                 android:text="@string/EDADPERFIL"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -163,7 +183,8 @@
                 android:id="@+id/CORREOPERFILTXT"
                 android:text="@string/CORREOPERFILTXT"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -173,7 +194,8 @@
                 android:id="@+id/CORREOPERFIL"
                 android:text="@string/CORREOPERFIL"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -191,7 +213,8 @@
                 android:id="@+id/PASSWORLDPERFILTXT"
                 android:text="@string/PASSWORLDPERFILTXT"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -201,13 +224,22 @@
                 android:id="@+id/PASSWORLDPERFIL"
                 android:text="@string/PASSWORLDPERFIL"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
             </TextView>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="2dp">
+
+        </View>
 
         <Button
             android:id="@+id/ACTUALIZARPASS"

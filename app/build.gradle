@@ -47,4 +47,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828' /*PARA GESTIONAR IMAGENES*/
     implementation 'androidx.recyclerview:recyclerview:1.2.1' /*RECYCLERVIEW*/
     //implementation 'androidx.cardview:1.0.0' /*CARDVIEW*/
+    implementation 'de.hdodenhof:circleimageview:3.0.1' /*VER IMAGENES DE MANERA CIRCULAR*/
 }

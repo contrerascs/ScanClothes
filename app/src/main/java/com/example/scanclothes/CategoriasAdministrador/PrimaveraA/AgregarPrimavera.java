@@ -220,7 +220,7 @@ public class AgregarPrimavera extends AppCompatActivity {
             Toast.makeText(AgregarPrimavera.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Espere por favor");
-            progressDialog.setMessage("Subiendo Imagen OTONO...");
+            progressDialog.setMessage("Subiendo Ropa De Primavera...");
             progressDialog.show();
             progressDialog.setCancelable(false);
             StorageReference storageReference2 = mStorageReference.child(RutaDeAlmacenamiento+System.currentTimeMillis()+"."+ObtenerExtensionDelArchivo(RutaArchivoUri));

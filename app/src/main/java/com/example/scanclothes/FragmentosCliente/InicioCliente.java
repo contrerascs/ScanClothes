@@ -1,66 +1,96 @@
 package com.example.scanclothes.FragmentosCliente;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.scanclothes.Categorias.Categoria;
+import com.example.scanclothes.Categorias.ControladorCategorias;
+import com.example.scanclothes.Categorias.ViewHolderCategoria;
 import com.example.scanclothes.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link InicioCliente#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class InicioCliente extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    RecyclerView recyclerViewCategorias;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference reference;
+    LinearLayoutManager linearLayoutManager;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FirebaseRecyclerAdapter<Categoria, ViewHolderCategoria> firebaseRecyclerAdapter;
+    FirebaseRecyclerOptions<Categoria> options;
 
-    public InicioCliente() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment InicioCliente.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InicioCliente newInstance(String param1, String param2) {
-        InicioCliente fragment = new InicioCliente();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio_cliente, container, false);
+        View view = inflater.inflate(R.layout.fragment_inicio_cliente, container, false);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        reference = firebaseDatabase.getReference("CATEGORIAS");
+        linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+
+        recyclerViewCategorias = view.findViewById(R.id.recyclerViewCategorias);
+        recyclerViewCategorias.setHasFixedSize(true);
+        recyclerViewCategorias.setLayoutManager(linearLayoutManager);
+
+        VerCategorias();
+
+        return view;
+    }
+
+    private void VerCategorias(){
+        options = new FirebaseRecyclerOptions.Builder<Categoria>().setQuery(reference,Categoria.class).build();
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Categoria, ViewHolderCategoria>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ViewHolderCategoria viewHolderCategoria, int position, @NonNull Categoria categoria) {
+                viewHolderCategoria.SeteoCategoria(
+                        getActivity(),
+                        categoria.getCategoria(),
+                        categoria.getImagen()
+                );
+            }
+
+            @NonNull
+            @Override
+            public ViewHolderCategoria onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.categorias_dispositivo,parent,false);
+                ViewHolderCategoria viewHolderCategoria = new ViewHolderCategoria(itemView);
+
+                viewHolderCategoria.setOnClickListener(new ViewHolderCategoria.ClickListener() {
+                    @Override
+                    public void OnIntemClick(View view, int position) {
+                        //OBTENEMOS EL NOMBRE DE LA CATEGORIA
+                        String categoria = getItem(position).getCategoria();
+
+                        //PASAMOS EL NOMBRE DE LA CATEGORIA
+                        Intent intent = new Intent(view.getContext(), ControladorCategorias.class);
+                        intent.putExtra("Categoria",categoria);
+                        startActivity(intent);
+                        Toast.makeText(getActivity(),categoria,Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                return viewHolderCategoria;
+            }
+        };
+        recyclerViewCategorias.setAdapter(firebaseRecyclerAdapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (firebaseRecyclerAdapter != null){
+            firebaseRecyclerAdapter.startListening();
+        }
     }
 }

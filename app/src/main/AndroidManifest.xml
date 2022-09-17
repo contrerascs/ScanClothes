@@ -13,6 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Categorias.ControladorCategorias"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.VeranoCliente"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.PrimaveraCliente"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.OtonoCliente"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasCliente.InviernoCliente"
+            android:exported="false" />
+        <activity
             android:name=".FragmentosAdministrador.Cambio_Pass"
             android:exported="false" />
         <activity

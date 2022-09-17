@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,10 +70,10 @@ public class ViewHolderVerano extends RecyclerView.ViewHolder {
         //CONTROLAR POSIBLES ERRORES
         try{
             //SI LA IMAGEN FUE TRAIDA EXITOSAMENTE
-            Picasso.get().load(imagen).into(ImagenVerano);
+            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(ImagenVerano);
         }catch (Exception e){
             //SI LA IMAGEN NO FUE TRAIDA EXITOSAMENTE
-            Toast.makeText(context, ""+e.getMessage(),Toast.LENGTH_SHORT).show();
+            Picasso.get().load(R.drawable.categoria).into(ImagenVerano);
         }
     }
 }
