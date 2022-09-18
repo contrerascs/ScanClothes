@@ -30,6 +30,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +49,7 @@ public class VeranoA extends AppCompatActivity {
     FirebaseRecyclerAdapter<Verano, ViewHolderVerano> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Verano> options;
 
+    FirebaseAuth firebaseAuth;
     SharedPreferences sharedPreferences;
     Dialog dialog;
 
@@ -65,6 +68,7 @@ public class VeranoA extends AppCompatActivity {
         recyclerViewVerano.setHasFixedSize(true);
         mfirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mfirebaseDatabase.getReference("VERANO");
+        firebaseAuth = FirebaseAuth.getInstance();
 
         dialog = new Dialog(VeranoA.this);
 
@@ -72,7 +76,9 @@ public class VeranoA extends AppCompatActivity {
     }
 
     private void ListarImagenesVerano() {
-        options = new FirebaseRecyclerOptions.Builder<Verano>().setQuery(mRef, Verano.class).build();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        Query query = mRef.orderByChild("id_administrador").equalTo(user.getUid());
+        options = new FirebaseRecyclerOptions.Builder<Verano>().setQuery(query, Verano.class).build();
 
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Verano, ViewHolderVerano>(options) {
             @Override
@@ -82,7 +88,8 @@ public class VeranoA extends AppCompatActivity {
                         verano.getNombre(),
                         verano.getVistas(),
                         verano.getImagen(),
-                        verano.getDescripcion()
+                        verano.getDescripcion(),
+                        verano.getId_administrador()
                 );
             }
 

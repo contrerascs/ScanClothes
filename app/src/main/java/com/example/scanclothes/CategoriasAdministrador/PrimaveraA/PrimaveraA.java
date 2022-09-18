@@ -30,6 +30,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +49,7 @@ public class PrimaveraA extends AppCompatActivity {
     FirebaseRecyclerAdapter<Primavera, ViewHolderPrimavera> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Primavera> options;
 
+    FirebaseAuth firebaseAuth;
     SharedPreferences sharedPreferences;
     Dialog dialog;
 
@@ -65,6 +68,8 @@ public class PrimaveraA extends AppCompatActivity {
         recyclerViewPrimavera.setHasFixedSize(true);
         mfirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mfirebaseDatabase.getReference("PRIMAVERA");
+        firebaseAuth = FirebaseAuth.getInstance();
+
 
         dialog = new Dialog(PrimaveraA.this);
 
@@ -72,7 +77,9 @@ public class PrimaveraA extends AppCompatActivity {
     }
 
     private void ListarImagenesPrimavera() {
-        options = new FirebaseRecyclerOptions.Builder<Primavera>().setQuery(mRef, Primavera.class).build();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        Query query = mRef.orderByChild("id_administrador").equalTo(user.getUid());
+        options = new FirebaseRecyclerOptions.Builder<Primavera>().setQuery(query, Primavera.class).build();
 
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Primavera, ViewHolderPrimavera>(options) {
             @Override
@@ -82,7 +89,8 @@ public class PrimaveraA extends AppCompatActivity {
                         primavera.getNombre(),
                         primavera.getVistas(),
                         primavera.getImagen(),
-                        primavera.getDescripcion()
+                        primavera.getDescripcion(),
+                        primavera.getId_administrador()
                 );
             }
 

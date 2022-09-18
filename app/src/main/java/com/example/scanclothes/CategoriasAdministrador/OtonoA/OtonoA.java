@@ -30,6 +30,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +49,7 @@ public class OtonoA extends AppCompatActivity {
     FirebaseRecyclerAdapter<Otono, ViewHolderOtono> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Otono> options;
 
+    FirebaseAuth firebaseAuth;
     SharedPreferences sharedPreferences;
     Dialog dialog;
 
@@ -65,6 +68,7 @@ public class OtonoA extends AppCompatActivity {
         recyclerViewOtono.setHasFixedSize(true);
         mfirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mfirebaseDatabase.getReference("OTOÑO");
+        firebaseAuth = FirebaseAuth.getInstance();
 
         dialog = new Dialog(OtonoA.this);
 
@@ -72,7 +76,9 @@ public class OtonoA extends AppCompatActivity {
     }
 
     private void ListarImagenesOtono() {
-        options = new FirebaseRecyclerOptions.Builder<Otono>().setQuery(mRef, Otono.class).build();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        Query query = mRef.orderByChild("id_administrador").equalTo(user.getUid());
+        options = new FirebaseRecyclerOptions.Builder<Otono>().setQuery(query, Otono.class).build();
 
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Otono, ViewHolderOtono>(options) {
             @Override
@@ -82,7 +88,8 @@ public class OtonoA extends AppCompatActivity {
                         otono.getNombre(),
                         otono.getVistas(),
                         otono.getImagen(),
-                        otono.getDescripcion()
+                        otono.getDescripcion(),
+                        otono.getId_administrador()
                 );
             }
 

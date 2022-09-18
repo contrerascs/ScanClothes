@@ -30,6 +30,8 @@ import com.example.scanclothes.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +58,7 @@ public class AgregarPrimavera extends AppCompatActivity {
 
     StorageReference mStorageReference;
     DatabaseReference DatabaseReference;
+    FirebaseAuth firebaseAuth;
 
     ProgressDialog progressDialog;
     String rNombre,rImagen,rDescripcion,rVista;
@@ -78,6 +81,7 @@ public class AgregarPrimavera extends AppCompatActivity {
         DescripcionPrendaPri = findViewById(R.id.DescripcionPrendaPri);
         AgregarPrendaPri = findViewById(R.id.AgregarPrendaPri);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
         DatabaseReference = FirebaseDatabase.getInstance().getReference(RutaDeBaseDeDatos);
         progressDialog = new ProgressDialog(AgregarPrimavera.this);
@@ -214,9 +218,10 @@ public class AgregarPrimavera extends AppCompatActivity {
 
     private void SubirImagen() {
         String mNombre = NombrePrimavera.getText().toString();
+        String mDescripcion = DescripcionPrendaPri.getText().toString();
 
         //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
-        if (mNombre.equals("")||RutaArchivoUri==null){
+        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")){
             Toast.makeText(AgregarPrimavera.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Espere por favor");
@@ -233,11 +238,11 @@ public class AgregarPrimavera extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
-                            String mDescripcion = DescripcionPrendaPri.getText().toString();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
                             String mVista = VistaPrimavera.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Primavera primavera = new Primavera(mNombre, mDescripcion,downloadURI.toString(),VISTA);
+                            Primavera primavera = new Primavera(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid());
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(primavera);

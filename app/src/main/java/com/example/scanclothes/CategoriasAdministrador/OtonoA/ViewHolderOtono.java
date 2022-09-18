@@ -45,7 +45,7 @@ public class ViewHolderOtono extends RecyclerView.ViewHolder {
         });
     }
 
-    public void SeteoOtono(Context context, String nombre, int vista, String imagen, String descripcion){
+    public void SeteoOtono(Context context, String nombre, int vista, String imagen, String descripcion, String id_administrador){
         ImageView ImagenOtono;
         TextView NombreImagenOtono;
         TextView VistaOtono;

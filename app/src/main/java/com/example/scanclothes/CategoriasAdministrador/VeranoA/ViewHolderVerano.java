@@ -46,7 +46,7 @@ public class ViewHolderVerano extends RecyclerView.ViewHolder {
 
     }
 
-    public void SeteoVerano(Context context, String nombre, int vista, String imagen, String descripcion){
+    public void SeteoVerano(Context context, String nombre, int vista, String imagen, String descripcion, String id_administrador){
         ImageView ImagenVerano;
         TextView NombreImagenVerano;
         TextView VistaVerano;

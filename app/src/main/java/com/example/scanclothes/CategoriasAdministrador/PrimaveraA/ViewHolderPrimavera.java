@@ -46,7 +46,7 @@ public class ViewHolderPrimavera extends RecyclerView.ViewHolder {
 
     }
 
-    public void SeteoPrimavera(Context context, String nombre, int vista, String imagen, String descripcion){
+    public void SeteoPrimavera(Context context, String nombre, int vista, String imagen, String descripcion, String id_administrador){
         ImageView ImagenPrimavera;
         TextView NombreImagenPrimavera;
         TextView VistaPrimavera;

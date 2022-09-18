@@ -45,7 +45,7 @@ public class ViewHolderInvierno extends RecyclerView.ViewHolder {
         });
     }
 
-    public void SeteoInvierno(Context context, String nombre, int vista, String imagen, String descripcion){
+    public void SeteoInvierno(Context context, String nombre, int vista, String imagen, String descripcion, String id_administrador){
         ImageView ImagenInvierno;
         TextView NombreImagenInvierno;
         TextView VistaInviernos;
@@ -58,12 +58,10 @@ public class ViewHolderInvierno extends RecyclerView.ViewHolder {
         DescripcionInvierno = mView.findViewById(R.id.DescripcionInviernoItem);
 
         NombreImagenInvierno.setText(nombre);
-
         DescripcionInvierno.setText(descripcion);
 
         //CONVERTIR A STRING EL PARAMETRO VISTA
         String VistaString = String.valueOf(vista);
-
         VistaInviernos.setText(VistaString);
 
         //CONTROLAR POSIBLES ERRORES

@@ -30,6 +30,8 @@ import com.example.scanclothes.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +58,7 @@ public class AgregarOtono extends AppCompatActivity {
 
     StorageReference mStorageReference;
     DatabaseReference DatabaseReference;
+    FirebaseAuth firebaseAuth;
 
     ProgressDialog progressDialog;
     String rNombre,rImagen,rDescripcion,rVista;
@@ -78,6 +81,7 @@ public class AgregarOtono extends AppCompatActivity {
         DescripcionPrendaOto = findViewById(R.id.DescripcionPrendaOto);
         AgregarPrendaOto = findViewById(R.id.AgregarPrendaOto);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
         DatabaseReference = FirebaseDatabase.getInstance().getReference(RutaDeBaseDeDatos);
         progressDialog = new ProgressDialog(AgregarOtono.this);
@@ -213,9 +217,10 @@ public class AgregarOtono extends AppCompatActivity {
 
     private void SubirImagen() {
         String mNombre = NombreOtono.getText().toString();
+        String mDescripcion = DescripcionPrendaOto.getText().toString();
 
         //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
-        if (mNombre.equals("")||RutaArchivoUri==null){
+        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")){
             Toast.makeText(AgregarOtono.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
         }else {
             progressDialog.setTitle("Espere por favor");
@@ -232,11 +237,11 @@ public class AgregarOtono extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
-                            String mDescripcion = DescripcionPrendaOto.getText().toString();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
                             String mVista = VistaOtono.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Otono otono = new Otono(mNombre, mDescripcion,downloadURI.toString(),VISTA);
+                            Otono otono = new Otono(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid());
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(otono);

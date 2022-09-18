@@ -1,6 +1,6 @@
 package com.example.scanclothes.CategoriasAdministrador.InviernoA;
 
-import  static com.google.firebase.storage.FirebaseStorage.getInstance;
+import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -30,6 +30,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,12 +45,13 @@ public class InviernoA extends AppCompatActivity {
     RecyclerView recyclerViewInvierno;
     FirebaseDatabase mfirebaseDatabase;
     DatabaseReference mRef;
-
     FirebaseRecyclerAdapter <Invierno,ViewHolderInvierno> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions <Invierno> options;
 
     SharedPreferences sharedPreferences;
     Dialog dialog;
+
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +69,18 @@ public class InviernoA extends AppCompatActivity {
         mfirebaseDatabase = FirebaseDatabase.getInstance();
         mRef = mfirebaseDatabase.getReference("INVIERNO");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         dialog = new Dialog(InviernoA.this);
 
         ListarImagenesInvierno();
+
     }
 
     private void ListarImagenesInvierno() {
-        options = new FirebaseRecyclerOptions.Builder<Invierno>().setQuery(mRef,Invierno.class).build();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        Query query = mRef.orderByChild("id_administrador").equalTo(user.getUid());
+        options = new FirebaseRecyclerOptions.Builder<Invierno>().setQuery(query,Invierno.class).build();
 
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Invierno, ViewHolderInvierno>(options) {
             @Override
@@ -82,7 +90,8 @@ public class InviernoA extends AppCompatActivity {
                         invierno.getNombre(),
                         invierno.getVistas(),
                         invierno.getImagen(),
-                        invierno.getDescripcion()
+                        invierno.getDescripcion(),
+                        invierno.getId_administrador()
                 );
             }
 
@@ -90,14 +99,14 @@ public class InviernoA extends AppCompatActivity {
             @Override
             public ViewHolderInvierno onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 //INFLAR EN ITEM
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_invierno,parent,false);
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_invierno, parent, false);
 
                 ViewHolderInvierno viewHolderInvierno = new ViewHolderInvierno(itemView);
 
                 viewHolderInvierno.setOnClickListener(new ViewHolderInvierno.ClickListener() {
                     @Override
                     public void OnIntemClick(View view, int position) {
-                        Toast.makeText(InviernoA.this,"ITEM CLICK",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InviernoA.this, "ITEM CLICK", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -111,27 +120,28 @@ public class InviernoA extends AppCompatActivity {
                         final String vistaString = String.valueOf(Vista);
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(InviernoA.this);
-                        String [] opciones = {"Actualizar","Eliminar"};
+                        String[] opciones = {"Actualizar", "Eliminar"};
                         builder.setItems(opciones, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if(i == 0){
-                                    Intent intent = new Intent(InviernoA.this,AgregarInvierno.class);
-                                    intent.putExtra("NombreEnviado",Nombre);
-                                    intent.putExtra("ImagenEnviada",Imagen);
-                                    intent.putExtra("DescripcionEnviada",Descripcion);
-                                    intent.putExtra("VistaEnviada",vistaString);
+                                if (i == 0) {
+                                    Intent intent = new Intent(InviernoA.this, AgregarInvierno.class);
+                                    intent.putExtra("NombreEnviado", Nombre);
+                                    intent.putExtra("ImagenEnviada", Imagen);
+                                    intent.putExtra("DescripcionEnviada", Descripcion);
+                                    intent.putExtra("VistaEnviada", vistaString);
                                     startActivity(intent);
-                                }if (i == 1){
-                                    EliminarDatos(Nombre,Imagen);
+                                }
+                                if (i == 1) {
+                                    EliminarDatos(Nombre, Imagen);
                                 }
                             }
                         });
                         builder.create().show();
                     }
                 });
-
                 return viewHolderInvierno;
+
             }
         };
         //AL INICIAR LA ACTIVIDAD SE VAN A LISTAR DE DOS COLUMNAS
