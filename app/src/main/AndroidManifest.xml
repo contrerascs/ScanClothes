@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".DetalleImagen.DetalleImagen"
+            android:exported="false" />
+        <activity
             android:name=".Categorias.ControladorCategorias"
             android:exported="false" />
         <activity

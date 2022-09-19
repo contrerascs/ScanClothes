@@ -48,4 +48,5 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1' /*RECYCLERVIEW*/
     //implementation 'androidx.cardview:1.0.0' /*CARDVIEW*/
     implementation 'de.hdodenhof:circleimageview:3.0.1' /*VER IMAGENES DE MANERA CIRCULAR*/
+    implementation 'com.github.clans:fab:1.6.4'         /*BOTÓN FLOTANTE*/
 }

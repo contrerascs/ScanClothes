@@ -1,6 +1,7 @@
 package com.example.scanclothes.CategoriasCliente;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.scanclothes.CategoriasAdministrador.PrimaveraA.Primavera;
 import com.example.scanclothes.CategoriasAdministrador.PrimaveraA.ViewHolderPrimavera;
+import com.example.scanclothes.DetalleImagen.DetalleImagen;
 import com.example.scanclothes.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -86,7 +87,26 @@ public class PrimaveraCliente extends AppCompatActivity {
                 viewHolderPrimavera.setOnClickListener(new ViewHolderPrimavera.ClickListener() {
                     @Override
                     public void OnIntemClick(View view, int position) {
-                        Toast.makeText(PrimaveraCliente.this, "ITEM CLICK", Toast.LENGTH_SHORT).show();
+                        //OBTENER LOS DATOS DE LA IMAGEN
+                        String Imagen = getItem(position).getImagen();
+                        String Nombres = getItem(position).getNombre();
+                        String Descripcion = getItem(position).getDescripcion();
+                        int Vistas = getItem(position).getVistas();
+
+                        //CONVERTIR A STRING LA VISTA
+                        String VistaString = String.valueOf(Vistas);
+
+                        //PASAMOS A LA ACTIVIDAD DETALLE IMAGEN
+                        Intent intent = new Intent(PrimaveraCliente.this, DetalleImagen.class);
+
+                        //DATOS A ENVIAR
+                        intent.putExtra("Imagen",Imagen);
+                        intent.putExtra("Nombre",Nombres);
+                        intent.putExtra("Descripcion",Descripcion);
+                        intent.putExtra("Vistas",VistaString);
+
+                        startActivity(intent);
+
                     }
 
                     @Override

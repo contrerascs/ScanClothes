@@ -134,6 +134,16 @@
     <!--NANALAAND-->
     <string name="NombreCategoriaD"> -- </string>
 
+    <!--DETALLES IMAGEN-->
+    <string name="NombreImagenTXT">Nombre De Imagen</string>
+    <string name="NombreImagenDetalle"> -- </string>
+    <string name="VisualizacionTXT">Visualizaciones</string>
+    <string name="VistaDetalle"> -- </string>
+    <string name="DescripcionImagenTXT">Descripción de la prenda</string>
+    <string name="DescripcionImagen"> -- </string>
+    <string name="VisualizarEnProbador">Visualizar En Provador Virtual</string>
+    <string name="ObtenerPrenda">Obtener Prenda</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
