@@ -47,7 +47,7 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 
 public class AgregarOtono extends AppCompatActivity {
-    EditText NombreOtono, DescripcionPrendaOto;
+    EditText NombreOtono, DescripcionPrendaOto, LinkDePrendaOto;
     TextView VistaOtono;
     ImageView ImagenPrendaOto;
     Button AgregarPrendaOto;
@@ -80,6 +80,7 @@ public class AgregarOtono extends AppCompatActivity {
         ImagenPrendaOto = findViewById(R.id.ImagenPrendaOto);
         DescripcionPrendaOto = findViewById(R.id.DescripcionPrendaOto);
         AgregarPrendaOto = findViewById(R.id.AgregarPrendaOto);
+        LinkDePrendaOto = findViewById(R.id.LinkDePrendaOto);
 
         firebaseAuth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
@@ -110,11 +111,6 @@ public class AgregarOtono extends AppCompatActivity {
         ImagenPrendaOto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SDK 30
-                //Intent intent = new Intent();
-                //intent.setType("image/*");
-                //intent.setAction(Intent.ACTION_GET_CONTENT);
-                //startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITTUD_IMAGEN);
                 //SDK 31
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
@@ -218,9 +214,10 @@ public class AgregarOtono extends AppCompatActivity {
     private void SubirImagen() {
         String mNombre = NombreOtono.getText().toString();
         String mDescripcion = DescripcionPrendaOto.getText().toString();
+        String mLinkPrenda = LinkDePrendaOto.getText().toString();
 
         //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
-        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")){
+        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")||mLinkPrenda.equals("")){
             Toast.makeText(AgregarOtono.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
         }else {
             progressDialog.setTitle("Espere por favor");
@@ -241,7 +238,7 @@ public class AgregarOtono extends AppCompatActivity {
                             String mVista = VistaOtono.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Otono otono = new Otono(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid());
+                            Otono otono = new Otono(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid(),mLinkPrenda);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(otono);
@@ -273,26 +270,6 @@ public class AgregarOtono extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
-
-    //COMPROBAR SI LA IMAGEN SELECCIONADA POR EL ADMINISTRADOR FUE CORRECTA
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CODIGO_DE_SOLICITTUD_IMAGEN
-                && resultCode == RESULT_OK
-                && data != null
-                & data.getData() != null){
-            RutaArchivoUri = data.getData();
-            try {
-                //CONVERTIMOS A UN BITMAP
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),RutaArchivoUri);
-                //SETEAMOS LA IMAGEN
-                ImagenPrendaOto.setImageBitmap(bitmap);
-            }catch (Exception e){
-                Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 
     //SDK 31
     //Obtener Imagen de la galeria

@@ -91,6 +91,7 @@ public class PrimaveraCliente extends AppCompatActivity {
                         String Imagen = getItem(position).getImagen();
                         String Nombres = getItem(position).getNombre();
                         String Descripcion = getItem(position).getDescripcion();
+                        String LinkPrenda = getItem(position).getEnlace();
                         int Vistas = getItem(position).getVistas();
 
                         //CONVERTIR A STRING LA VISTA
@@ -104,6 +105,7 @@ public class PrimaveraCliente extends AppCompatActivity {
                         intent.putExtra("Nombre",Nombres);
                         intent.putExtra("Descripcion",Descripcion);
                         intent.putExtra("Vistas",VistaString);
+                        intent.putExtra("Enlace",LinkPrenda);
 
                         startActivity(intent);
 

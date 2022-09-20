@@ -9,7 +9,7 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/vista_ico_item.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable/btn_personalizado.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable/btn_personalizado_dos.xml" value="0.192" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_invierno.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_invierno.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_otono.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_prenda.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_primavera.xml" value="0.25416666666666665" />
@@ -34,7 +34,8 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_verano_cliente.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/carga.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/categorias_dispositivo.xml" value="0.4" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/dialog_ordenar.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/dialog_obtener_prenda.xml" value="0.4" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/dialog_ordenar.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/encabezado.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_categorias_cliente.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_escaner_cliente.xml" value="0.1" />

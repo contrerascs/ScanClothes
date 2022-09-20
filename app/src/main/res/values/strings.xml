@@ -40,7 +40,6 @@
 
     <!--CATEGORIAS-->
     <string name="Eligeunacategoriatxt">Elige una categoría</string>
-
     <string name="Invierno">INVIERNO</string>
     <string name="Otoño">OTOÑO</string>
     <string name="Verano">VERANO</string>
@@ -56,6 +55,7 @@
     <string name="VistaInvierno">0</string>
     <string name="AgregarPrendaInv">Agregar Prenda</string>
     <string name="DescripcionPrendaInv">Agregar Descripcion</string>
+    <string name="LinkDePrendaInv">Agrega el enlace de la prenda</string>
 
     <!--ITEM DE AGREGAR PRENDA DE INVIERNO-->
     <string name="NombreImagenInviernoItem"> -- </string>
@@ -68,6 +68,7 @@
     <string name="VistaOtoño">0</string>
     <string name="AgregarPrendaOto">Agregar Prenda</string>
     <string name="DescripcionPrendaOto">Agregar Descripcion</string>
+    <string name="LinkDePrendaOto">Agrega el enlace de la prenda</string>
 
     <!--ITEM DE AGREGAR PRENDA DE INVIERNO-->
     <string name="NombreImagenOtoñoItem"> -- </string>
@@ -80,6 +81,7 @@
     <string name="VistaPrimavera">0</string>
     <string name="AgregarPrendaPri">Agregar Prenda</string>
     <string name="DescripcionPrendaPri">Agregar Descripcion</string>
+    <string name="LinkDePrendaPri">Agrega el enlace de la prenda</string>
 
     <!--ITEM DE AGREGAR PRENDA DE PRIMAVERA-->
     <string name="NombreImagenPrimaveraItem"> -- </string>
@@ -92,6 +94,7 @@
     <string name="VistaVerano">0</string>
     <string name="AgregarPrendaVer">Agregar Prenda</string>
     <string name="DescripcionPrendaVer">Agregar Descripcion</string>
+    <string name="LinkDePrendaVer">Agrega el enlace de la prenda</string>
 
     <!--ITEM DE AGREGAR PRENDA DE VERANO-->
     <string name="NombreImagenVeranoItem"> -- </string>
@@ -143,6 +146,12 @@
     <string name="DescripcionImagen"> -- </string>
     <string name="VisualizarEnProbador">Visualizar En Provador Virtual</string>
     <string name="ObtenerPrenda">Obtener Prenda</string>
+
+    <!--DIALOG OBTENER PRENDA-->
+    <string name="ObtenerPrendaTXT">ENLACE DE LA PRENDA</string>
+    <string name="EnlacePrendaDialog"> -- </string>
+    <string name="IrNavegador">Abrir En Navegador</string>
+    <string name="CopiarEnlace">Copiar Enlace</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

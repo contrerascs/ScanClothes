@@ -5,17 +5,19 @@ public class Primavera {
     private String descripcion;
     private String imagen;
     private String id_administrador;
+    private String enlace;
     private int vistas;
 
     public Primavera() {
     }
 
-    public Primavera(String nombre, String descripcion, String imagen, int vistas, String id_administrador) {
+    public Primavera(String nombre, String descripcion, String imagen, int vistas, String id_administrador, String enlace) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.vistas = vistas;
         this.id_administrador = id_administrador;
+        this.enlace = enlace;
     }
 
     public String getNombre() {
@@ -56,5 +58,13 @@ public class Primavera {
 
     public void setId_administrador(String id_administrador) {
         this.id_administrador = id_administrador;
+    }
+
+    public String getEnlace() {
+        return enlace;
+    }
+
+    public void setEnlace(String enlace) {
+        this.enlace = enlace;
     }
 }

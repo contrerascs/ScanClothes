@@ -46,7 +46,7 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 
 public class AgregarVerano extends AppCompatActivity {
-    EditText NombreVerano, DescripcionPrendaVer;
+    EditText NombreVerano, DescripcionPrendaVer, LinkDePrendaVer;
     TextView VistaVerano;
     ImageView ImagenPrendaVer;
     Button AgregarPrendaVer;
@@ -78,6 +78,7 @@ public class AgregarVerano extends AppCompatActivity {
         ImagenPrendaVer = findViewById(R.id.ImagenPrendaVer);
         DescripcionPrendaVer = findViewById(R.id.DescripcionPrendaVer);
         AgregarPrendaVer = findViewById(R.id.AgregarPrendaVer);
+        LinkDePrendaVer = findViewById(R.id.LinkDePrendaVer);
 
         firebaseAuth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
@@ -108,12 +109,6 @@ public class AgregarVerano extends AppCompatActivity {
         ImagenPrendaVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SDK 30
-                //Intent intent = new Intent();
-                //intent.setType("image/*");
-                //intent.setAction(Intent.ACTION_GET_CONTENT);
-                //startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITTUD_IMAGEN);
-                //SDK 31
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 ObtenerImagenGaleria.launch(intent);
@@ -217,9 +212,10 @@ public class AgregarVerano extends AppCompatActivity {
     private void SubirImagen() {
         String mNombre = NombreVerano.getText().toString();
         String mDescripcion = DescripcionPrendaVer.getText().toString();
+        String mLinkPrenda = LinkDePrendaVer.getText().toString();
 
         //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
-        if (mNombre.equals("")||RutaArchivoUri==null||mNombre.equals("")){
+        if (mNombre.equals("")||RutaArchivoUri==null||mNombre.equals("")||mLinkPrenda.equals("")){
             Toast.makeText(AgregarVerano.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Espere por favor");
@@ -240,7 +236,7 @@ public class AgregarVerano extends AppCompatActivity {
                             String mVista = VistaVerano.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Verano verano = new Verano(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid());
+                            Verano verano = new Verano(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid(),mLinkPrenda);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(verano);
@@ -272,26 +268,6 @@ public class AgregarVerano extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
-
-    //COMPROBAR SI LA IMAGEN SELECCIONADA POR EL ADMINISTRADOR FUE CORRECTA
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CODIGO_DE_SOLICITTUD_IMAGEN
-                && resultCode == RESULT_OK
-                && data != null
-                & data.getData() != null){
-            RutaArchivoUri = data.getData();
-            try {
-                //CONVERTIMOS A UN BITMAP
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),RutaArchivoUri);
-                //SETEAMOS LA IMAGEN
-                ImagenPrendaVer.setImageBitmap(bitmap);
-            }catch (Exception e){
-                Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 
     //SDK 31
     //Obtener Imagen de la galeria

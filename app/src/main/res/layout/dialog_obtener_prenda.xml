@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_gravity="center"
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/ObtenerPrendaTXT"
+        android:text="@string/ObtenerPrendaTXT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/EnlacePrendaDialog"
+        android:text="@string/EnlacePrendaDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center">
+
+    </TextView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <Button
+            android:id="@+id/CopiarEnlace"
+            android:text="@string/CopiarEnlace"
+            android:background="@drawable/btn_personalizado"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:textColor="@color/white">
+
+        </Button>
+
+        <Button
+            android:id="@+id/IrNavegador"
+            android:text="@string/IrNavegador"
+            android:background="@drawable/btn_personalizado"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/white">
+
+        </Button>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

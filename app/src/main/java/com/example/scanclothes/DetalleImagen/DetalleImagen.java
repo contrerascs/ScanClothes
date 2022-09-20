@@ -1,5 +1,7 @@
 package com.example.scanclothes.DetalleImagen;
 
+import android.app.Dialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.scanclothes.CategoriasAdministrador.InviernoA.InviernoA;
 import com.example.scanclothes.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -19,6 +22,8 @@ public class DetalleImagen extends AppCompatActivity {
     ImageView ImagenDetalle;
     TextView NombreImagenDetalle, DescripcionImagen, VistaDetalle;
     Button VisualizarEnProbador,ObtenerPrenda;
+
+    Dialog dialog;
 
     FloatingActionButton fabDescargar,fabCompratir,fabEstablecer;
 
@@ -44,9 +49,12 @@ public class DetalleImagen extends AppCompatActivity {
         fabCompratir = findViewById(R.id.fabCompratir);
         fabEstablecer = findViewById(R.id.fabEstablecer);
 
+        dialog = new Dialog(DetalleImagen.this);
+
         String Imagen = getIntent().getStringExtra("Imagen");
         String Nombre = getIntent().getStringExtra("Nombre");
         String Descripcion = getIntent().getStringExtra("Descripcion");
+        String Link = getIntent().getStringExtra("Enlace");
         String Vistas = getIntent().getStringExtra("Vistas");
 
         try {
@@ -71,7 +79,7 @@ public class DetalleImagen extends AppCompatActivity {
         ObtenerPrenda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetalleImagen.this,"Obtener Prenda",Toast.LENGTH_SHORT).show();
+                ObtenerPrenda(Link);
             }
         });
 
@@ -95,6 +103,48 @@ public class DetalleImagen extends AppCompatActivity {
                 Toast.makeText(DetalleImagen.this,"Compartir",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void ObtenerPrenda(String Enlace) {
+        //CAMBIO DE LETRA
+        String ubicacion = "fuentes/CaviarDreams.ttf";
+        Typeface tf = Typeface.createFromAsset(DetalleImagen.this.getAssets(),
+                ubicacion);
+
+        //DECLARANDO VISTAS
+        TextView EnlacePrendaDialog, ObtenerPrendaTXT;
+        Button CopiarEnlace,IrNavegador;
+
+        //CONEXION CON EL CUADRO DE DIALOGO
+        dialog.setContentView(R.layout.dialog_obtener_prenda);
+
+        ObtenerPrendaTXT = dialog.findViewById(R.id.ObtenerPrendaTXT);
+        EnlacePrendaDialog = dialog.findViewById(R.id.EnlacePrendaDialog);
+        CopiarEnlace = dialog.findViewById(R.id.CopiarEnlace);
+        IrNavegador = dialog.findViewById(R.id.IrNavegador);
+
+        //CAMBIO DE FUENTE DE LETRA
+        ObtenerPrendaTXT.setTypeface(tf);
+
+        EnlacePrendaDialog.setText(Enlace);
+
+        CopiarEnlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DetalleImagen.this,"Copiar Enlace",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        IrNavegador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DetalleImagen.this,"Abir Navegador",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     @Override

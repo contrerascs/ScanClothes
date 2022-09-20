@@ -44,8 +44,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/DescripcionPrendaInv"
-                android:inputType="textCapWords|textAutoCorrect">
+                android:hint="@string/DescripcionPrendaInv">
+
+            </EditText>
+
+            <!--LINK DE LA PRENDA-->
+            <EditText
+                android:id="@+id/LinkDePrendaInv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/LinkDePrendaInv">
 
             </EditText>
 

@@ -241,7 +241,6 @@ public class InviernoA extends AppCompatActivity {
         String ubicacion = "fuentes/CaviarDreams.ttf";
         Typeface tf = Typeface.createFromAsset(InviernoA.this.getAssets(),
                 ubicacion);
-        //CAMBIO DE LETRA
 
         //DECLARANDO VISTAS
         TextView OrdenarTXT;

@@ -48,7 +48,7 @@ import java.io.ByteArrayOutputStream;
 
 public class AgregarInvierno extends AppCompatActivity {
 
-    EditText NombreInvierno, DescripcionPrendaInv;
+    EditText NombreInvierno, DescripcionPrendaInv, LinkDePrendaInv;
     TextView VistaInvierno;
     ImageView ImagenPrendaInv;
     Button AgregarPrendaInv;
@@ -81,6 +81,7 @@ public class AgregarInvierno extends AppCompatActivity {
         ImagenPrendaInv = findViewById(R.id.ImagenPrendaInv);
         DescripcionPrendaInv = findViewById(R.id.DescripcionPrendaInv);
         AgregarPrendaInv = findViewById(R.id.AgregarPrendaInv);
+        LinkDePrendaInv = findViewById(R.id.LinkDePrendaInv);
 
         firebaseAuth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
@@ -111,11 +112,6 @@ public class AgregarInvierno extends AppCompatActivity {
         ImagenPrendaInv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SDK 30
-                //Intent intent = new Intent();
-                //intent.setType("image/*");
-                //intent.setAction(Intent.ACTION_GET_CONTENT);
-                //startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITTUD_IMAGEN);
                 //SDK 31
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
@@ -222,10 +218,11 @@ public class AgregarInvierno extends AppCompatActivity {
     private void SubirImagen() {
         String mNombre = NombreInvierno.getText().toString();
         String mDescripcion = DescripcionPrendaInv.getText().toString();
+        String mLinkPrenda = LinkDePrendaInv.getText().toString();
 
         //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
-        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")){
-            Toast.makeText(AgregarInvierno.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
+        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")||mLinkPrenda.equals("")){
+            Toast.makeText(AgregarInvierno.this,"Por favor complete todos los campos y agregue una imagen",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Espere por favor");
             progressDialog.setMessage("Subiendo Ropa De Invierno...");
@@ -245,7 +242,7 @@ public class AgregarInvierno extends AppCompatActivity {
                             String mVista = VistaInvierno.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Invierno invierno = new Invierno(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid());
+                            Invierno invierno = new Invierno(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid(),mLinkPrenda);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(invierno);
@@ -277,27 +274,6 @@ public class AgregarInvierno extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
-
-    //COMPROBAR SI LA IMAGEN SELECCIONADA POR EL ADMINISTRADOR FUE CORRECTA
-    //SDK 30
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CODIGO_DE_SOLICITTUD_IMAGEN
-                && resultCode == RESULT_OK
-                && data != null
-                & data.getData() != null){
-            RutaArchivoUri = data.getData();
-            try {
-                //CONVERTIMOS A UN BITMAP
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),RutaArchivoUri);
-                //SETEAMOS LA IMAGEN
-                ImagenPrendaInv.setImageBitmap(bitmap);
-            }catch (Exception e){
-                Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 
     //SDK 31
     //Obtener Imagen de la galeria

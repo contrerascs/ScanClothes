@@ -47,7 +47,7 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 
 public class AgregarPrimavera extends AppCompatActivity {
-    EditText NombrePrimavera, DescripcionPrendaPri;
+    EditText NombrePrimavera, DescripcionPrendaPri, LinkDePrendaPri;
     TextView VistaPrimavera;
     ImageView ImagenPrendaPri;
     Button AgregarPrendaPri;
@@ -80,6 +80,7 @@ public class AgregarPrimavera extends AppCompatActivity {
         ImagenPrendaPri = findViewById(R.id.ImagenPrendaPri);
         DescripcionPrendaPri = findViewById(R.id.DescripcionPrendaPri);
         AgregarPrendaPri = findViewById(R.id.AgregarPrendaPri);
+        LinkDePrendaPri = findViewById(R.id.LinkDePrendaPri);
 
         firebaseAuth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
@@ -110,11 +111,6 @@ public class AgregarPrimavera extends AppCompatActivity {
         ImagenPrendaPri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SDK 30
-                //Intent intent = new Intent();
-                //intent.setType("image/*");
-                //intent.setAction(Intent.ACTION_GET_CONTENT);
-                //startActivityForResult(Intent.createChooser(intent,"Seleccionar imagen"),CODIGO_DE_SOLICITTUD_IMAGEN);
                 //SDK 31
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
@@ -219,9 +215,10 @@ public class AgregarPrimavera extends AppCompatActivity {
     private void SubirImagen() {
         String mNombre = NombrePrimavera.getText().toString();
         String mDescripcion = DescripcionPrendaPri.getText().toString();
+        String mLinkPrenda = LinkDePrendaPri.getText().toString();
 
         //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
-        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")){
+        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")||mLinkPrenda.equals("")){
             Toast.makeText(AgregarPrimavera.this,"Asigne un nombre o una imagen",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Espere por favor");
@@ -242,7 +239,7 @@ public class AgregarPrimavera extends AppCompatActivity {
                             String mVista = VistaPrimavera.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Primavera primavera = new Primavera(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid());
+                            Primavera primavera = new Primavera(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid(),mLinkPrenda);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(primavera);
@@ -274,26 +271,6 @@ public class AgregarPrimavera extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
-
-    //COMPROBAR SI LA IMAGEN SELECCIONADA POR EL ADMINISTRADOR FUE CORRECTA
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CODIGO_DE_SOLICITTUD_IMAGEN
-                && resultCode == RESULT_OK
-                && data != null
-                & data.getData() != null){
-            RutaArchivoUri = data.getData();
-            try {
-                //CONVERTIMOS A UN BITMAP
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),RutaArchivoUri);
-                //SETEAMOS LA IMAGEN
-                ImagenPrendaPri.setImageBitmap(bitmap);
-            }catch (Exception e){
-                Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 
     //SDK 31
     //Obtener Imagen de la galeria
