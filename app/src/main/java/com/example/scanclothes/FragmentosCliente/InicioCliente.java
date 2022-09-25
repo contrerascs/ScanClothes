@@ -1,20 +1,24 @@
 package com.example.scanclothes.FragmentosCliente;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scanclothes.Categorias.Categoria;
-import com.example.scanclothes.Categorias.ControladorCategorias;
-import com.example.scanclothes.Categorias.ViewHolderCategoria;
+import com.example.scanclothes.CategoriasAdministrador.InviernoA.Invierno;
+import com.example.scanclothes.CategoriasAdministrador.InviernoA.ViewHolderInvierno;
+import com.example.scanclothes.CategoriasAdministrador.PrimaveraA.Primavera;
+import com.example.scanclothes.CategoriasAdministrador.PrimaveraA.ViewHolderPrimavera;
+import com.example.scanclothes.DetalleImagen.DetalleImagen;
 import com.example.scanclothes.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -23,67 +27,170 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class InicioCliente extends Fragment {
 
-    RecyclerView recyclerViewCategorias;
+    RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
-    LinearLayoutManager linearLayoutManager;
 
-    FirebaseRecyclerAdapter<Categoria, ViewHolderCategoria> firebaseRecyclerAdapter;
-    FirebaseRecyclerOptions<Categoria> options;
+    FirebaseRecyclerAdapter<Primavera, ViewHolderPrimavera> firebaseRecyclerAdapter2;
+    FirebaseRecyclerOptions<Primavera> options2;
+
+    FirebaseRecyclerAdapter<Invierno, ViewHolderInvierno> firebaseRecyclerAdapter;
+    FirebaseRecyclerOptions<Invierno> options;
+
+    SharedPreferences sharedPreferences;
+    Dialog dialog;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inicio_cliente, container, false);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference("CATEGORIAS");
-        linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
 
-        recyclerViewCategorias = view.findViewById(R.id.recyclerViewCategorias);
-        recyclerViewCategorias.setHasFixedSize(true);
-        recyclerViewCategorias.setLayoutManager(linearLayoutManager);
+        recyclerView = view.findViewById(R.id.recyclerInicioCliente);
+        recyclerView.setHasFixedSize(true);
 
-        VerCategorias();
+        dialog = new Dialog(getContext());
+
+        ListarImagenesVerano();
+        ListarImagenesInvierno();
 
         return view;
     }
 
-    private void VerCategorias(){
-        options = new FirebaseRecyclerOptions.Builder<Categoria>().setQuery(reference,Categoria.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Categoria, ViewHolderCategoria>(options) {
+    private void ListarImagenesVerano() {
+        reference = firebaseDatabase.getReference("PRIMAVERA");
+        options2 = new FirebaseRecyclerOptions.Builder<Primavera>().setQuery(reference,Primavera.class).build();
+
+        firebaseRecyclerAdapter2 = new FirebaseRecyclerAdapter<Primavera, ViewHolderPrimavera>(options2) {
             @Override
-            protected void onBindViewHolder(@NonNull ViewHolderCategoria viewHolderCategoria, int position, @NonNull Categoria categoria) {
-                viewHolderCategoria.SeteoCategoria(
-                        getActivity(),
-                        categoria.getCategoria(),
-                        categoria.getImagen()
+            protected void onBindViewHolder(@NonNull ViewHolderPrimavera viewHolderPrimavera, int position, @NonNull Primavera primavera) {
+                viewHolderPrimavera.SeteoPrimavera(
+                        getContext(),
+                        primavera.getNombre(),
+                        primavera.getVistas(),
+                        primavera.getImagen(),
+                        primavera.getDescripcion(),
+                        primavera.getId_administrador()
                 );
             }
 
             @NonNull
             @Override
-            public ViewHolderCategoria onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.categorias_dispositivo,parent,false);
-                ViewHolderCategoria viewHolderCategoria = new ViewHolderCategoria(itemView);
+            public ViewHolderPrimavera onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                //INFLAR EN ITEM
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_primavera, parent, false);
 
-                viewHolderCategoria.setOnClickListener(new ViewHolderCategoria.ClickListener() {
+                ViewHolderPrimavera viewHolderPrimavera = new ViewHolderPrimavera(itemView);
+
+                viewHolderPrimavera.setOnClickListener(new ViewHolderPrimavera.ClickListener() {
                     @Override
                     public void OnIntemClick(View view, int position) {
-                        //OBTENEMOS EL NOMBRE DE LA CATEGORIA
-                        String categoria = getItem(position).getCategoria();
+                        //OBTENER LOS DATOS DE LA IMAGEN
+                        String Imagen = getItem(position).getImagen();
+                        String Nombres = getItem(position).getNombre();
+                        String Descripcion = getItem(position).getDescripcion();
+                        String LinkPrenda = getItem(position).getEnlace();
+                        int Vistas = getItem(position).getVistas();
 
-                        //PASAMOS EL NOMBRE DE LA CATEGORIA
-                        Intent intent = new Intent(view.getContext(), ControladorCategorias.class);
-                        intent.putExtra("Categoria",categoria);
+                        //CONVERTIR A STRING LA VISTA
+                        String VistaString = String.valueOf(Vistas);
+
+                        //PASAMOS A LA ACTIVIDAD DETALLE IMAGEN
+                        Intent intent = new Intent(getContext(), DetalleImagen.class);
+
+                        //DATOS A ENVIAR
+                        intent.putExtra("Imagen",Imagen);
+                        intent.putExtra("Nombre",Nombres);
+                        intent.putExtra("Descripcion",Descripcion);
+                        intent.putExtra("Vistas",VistaString);
+                        intent.putExtra("Enlace",LinkPrenda);
+
                         startActivity(intent);
-                        Toast.makeText(getActivity(),categoria,Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void OnIntemLongClick(View view, int position) {
+
                     }
                 });
-
-                return viewHolderCategoria;
+                return viewHolderPrimavera;
             }
         };
-        recyclerViewCategorias.setAdapter(firebaseRecyclerAdapter);
+        //AL INICIAR LA ACTIVIDAD SE VAN A LISTAR DE DOS COLUMNAS
+        sharedPreferences = getContext().getSharedPreferences("PRIMAVERA", Context.MODE_PRIVATE);
+        String ordenar_en = sharedPreferences.getString("Ordenar","Dos");
+        //TIPO DE VISTA
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        firebaseRecyclerAdapter2.startListening();
+        recyclerView.setAdapter(firebaseRecyclerAdapter2);
+    }
+
+    private void ListarImagenesInvierno() {
+        reference = firebaseDatabase.getReference("INVIERNO");
+        options = new FirebaseRecyclerOptions.Builder<Invierno>().setQuery(reference,Invierno.class).build();
+
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Invierno, ViewHolderInvierno>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ViewHolderInvierno viewHolderInvierno, int position, @NonNull Invierno invierno) {
+                viewHolderInvierno.SeteoInvierno(
+                        getContext(),
+                        invierno.getNombre(),
+                        invierno.getVistas(),
+                        invierno.getImagen(),
+                        invierno.getDescripcion(),
+                        invierno.getId_administrador()
+                );
+            }
+
+            @NonNull
+            @Override
+            public ViewHolderInvierno onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                //INFLAR EN ITEM
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_invierno, parent, false);
+
+                ViewHolderInvierno viewHolderInvierno = new ViewHolderInvierno(itemView);
+
+                viewHolderInvierno.setOnClickListener(new ViewHolderInvierno.ClickListener() {
+                    @Override
+                    public void OnIntemClick(View view, int position) {
+                        //OBTENER LOS DATOS DE LA IMAGEN
+                        String Imagen = getItem(position).getImagen();
+                        String Nombres = getItem(position).getNombre();
+                        String Descripcion = getItem(position).getDescripcion();
+                        String LinkPrenda = getItem(position).getEnlace();
+                        int Vistas = getItem(position).getVistas();
+
+                        //CONVERTIR A STRING LA VISTA
+                        String VistaString = String.valueOf(Vistas);
+
+                        //PASAMOS A LA ACTIVIDAD DETALLE IMAGEN
+                        Intent intent = new Intent(getContext(), DetalleImagen.class);
+
+                        //DATOS A ENVIAR
+                        intent.putExtra("Imagen",Imagen);
+                        intent.putExtra("Nombre",Nombres);
+                        intent.putExtra("Descripcion",Descripcion);
+                        intent.putExtra("Vistas",VistaString);
+                        intent.putExtra("Enlace",LinkPrenda);
+
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void OnIntemLongClick(View view, int position) {
+
+                    }
+                });
+                return viewHolderInvierno;
+            }
+        };
+        //AL INICIAR LA ACTIVIDAD SE VAN A LISTAR DE DOS COLUMNAS
+        sharedPreferences = getContext().getSharedPreferences("INVIERNO", Context.MODE_PRIVATE);
+        String ordenar_en = sharedPreferences.getString("Ordenar","Dos");
+        //TIPO DE VISTA
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        firebaseRecyclerAdapter.startListening();
+        recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
     @Override

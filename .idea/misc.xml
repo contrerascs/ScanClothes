@@ -17,10 +17,10 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_cambio_pass.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_detalle_imagen.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_ingresar_registrar.xml" value="0.25416666666666665" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_inicio_sesion.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_inicio_sesion.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_invierno.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_invierno_a.xml" value="0.25416666666666665" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_invierno_cliente.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_invierno_cliente.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_main_administrador.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_otono.xml" value="0.25416666666666665" />
@@ -41,7 +41,7 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_escaner_cliente.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_ingresar_registrar.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_inicio_admin.xml" value="0.1" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_inicio_cliente.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_inicio_cliente.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_inicio_sesion_admin.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_inventario_admin.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_login.xml" value="0.24010416666666667" />
@@ -53,7 +53,7 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_verano.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/menu/menu_admin.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/menu/menu_cliente.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/menu/menu_vista.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/menu/menu_vista.xml" value="0.2" />
       </map>
     </option>
   </component>

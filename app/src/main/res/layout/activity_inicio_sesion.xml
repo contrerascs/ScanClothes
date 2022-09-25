@@ -55,6 +55,7 @@
             <EditText
                 android:id="@+id/Password"
                 android:hint="@string/Password"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

@@ -100,7 +100,7 @@
             android:id="@+id/VisualizarEnProbador"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/btn_personalizado_dos"
             android:text="@string/VisualizarEnProbador"
@@ -112,7 +112,7 @@
             android:id="@+id/ObtenerPrenda"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/btn_personalizado_dos"
             android:text="@string/ObtenerPrenda"
@@ -122,6 +122,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <!--BOTON FLOTANTE PARA GUARDAR, COMPARTIR LA IMAGEN
     <com.github.clans.fab.FloatingActionMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -192,5 +193,6 @@
         </com.github.clans.fab.FloatingActionButton>
 
     </com.github.clans.fab.FloatingActionMenu>
+    -->
 
 </RelativeLayout>
