@@ -49,4 +49,5 @@ dependencies {
     //implementation 'androidx.cardview:1.0.0' /*CARDVIEW*/
     implementation 'de.hdodenhof:circleimageview:3.0.1' /*VER IMAGENES DE MANERA CIRCULAR*/
     implementation 'com.github.clans:fab:1.6.4'         /*BOTÓN FLOTANTE*/
+    implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
 }

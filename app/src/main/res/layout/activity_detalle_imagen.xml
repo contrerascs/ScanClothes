@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!--
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ImagenDetalle"
             android:layout_width="300dp"
@@ -22,6 +23,17 @@
             android:src="@drawable/detalle_imagen">
 
         </androidx.appcompat.widget.AppCompatImageView>
+        -->
+
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/ImagenDetalle"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/detalle_imagen">
+
+        </com.ortiz.touchview.TouchImageView>
 
         <TextView
             android:layout_width="match_parent"

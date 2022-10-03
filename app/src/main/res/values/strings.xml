@@ -37,6 +37,11 @@
     <!--LOGIN DE ADMINISTRADORES-->
     <string name="LoginTXT">Inicia sesión</string>
     <string name="Ingresar">Ingresar</string>
+    <string name="OlvidasteTuContraseña">¿Olvidaste tu contraseña?</string>
+
+    <!--RECUPERAR CONTRASEÑA-->
+    <string name="RecuperarContraseñaTXT">Recupera Tú Contraseña</string>
+    <string name="Recuperar">Recuperar</string>
 
     <!--CATEGORIAS-->
     <string name="Eligeunacategoriatxt">Elige una categoría</string>

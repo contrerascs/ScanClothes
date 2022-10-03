@@ -1,9 +1,5 @@
 package com.example.scanclothes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -13,7 +9,12 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class InicioSesion extends AppCompatActivity {
     EditText Correo, Password;
+    TextView RecuperarContra;
     Button Ingresar;
 
     FirebaseAuth firebaseAuth;
@@ -43,6 +45,7 @@ public class InicioSesion extends AppCompatActivity {
         Correo = findViewById(R.id.Correo);
         Password = findViewById(R.id.Password);
         Ingresar = findViewById(R.id.Ingresar);
+        RecuperarContra = findViewById(R.id.OlvidasteTuContraseña);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -65,6 +68,15 @@ public class InicioSesion extends AppCompatActivity {
                         LogeoAdministradores(correo, pass);
                     }
                 }
+        });
+
+        RecuperarContra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InicioSesion.this, ForgotPassword.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
