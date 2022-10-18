@@ -38,10 +38,6 @@ public class DetalleImagen extends AppCompatActivity {
 
     Dialog dialog;
 
-    String url = "https://www.amazon.com/";
-
-    //FloatingActionButton fabDescargar,fabCompratir,fabEstablecer;
-
     Bitmap bitmap;
     //SOLICITUD DE ALMACENAMIENTO
     private static final int CODIGO_DE_ALMACENAMIENTO = 1;
@@ -62,11 +58,6 @@ public class DetalleImagen extends AppCompatActivity {
 
         VisualizarEnProbador = findViewById(R.id.VisualizarEnProbador);
         ObtenerPrenda = findViewById(R.id.ObtenerPrenda);
-
-        //INICIALIZACION DE BOTONES FLOTANTES
-        //fabDescargar = findViewById(R.id.fabDescargar);
-        //fabCompratir = findViewById(R.id.fabCompratir);
-        //fabEstablecer = findViewById(R.id.fabEstablecer);
 
         dialog = new Dialog(DetalleImagen.this);
 
@@ -101,46 +92,6 @@ public class DetalleImagen extends AppCompatActivity {
                 ObtenerPrenda(Link);
             }
         });
-
-        //FUNCIONES DE BOTONES FLOTANTES
-        /*fabDescargar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //SI LA VERSION DE ANDROID ES MAYOR O IGUAL A 6
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    //SI EL PERMISO ES DENEGADO
-                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
-                    PackageManager.PERMISSION_DENIED){
-                        String [] permisos = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        requestPermissions(permisos,CODIGO_DE_ALMACENAMIENTO);
-                    }else{
-                        //SI EL PERMISO FUE CONCEDIDO
-                        DescargarImagen();
-                    }
-                }else{
-                    //SI LA VERSION DE ANDROID ES MENOR A 6
-                    DescargarImagen();
-                }
-            }
-        });
-
-
-        fabCompratir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(DetalleImagen.this,"Compartir",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        fabEstablecer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(DetalleImagen.this,"Compartir",Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-        //StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        //StrictMode.setVmPolicy(builder.build());
     }
 
     private void ObtenerPrenda(String Enlace) {
@@ -181,12 +132,19 @@ public class DetalleImagen extends AppCompatActivity {
         IrNavegador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nuevo_enlace = "https://"+EnlacePrendaDialog.getText().toString();
-                Uri uri = Uri.parse(nuevo_enlace);
-                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-                startActivity(intent);
-
-                dialog.dismiss();
+                if(Enlace.substring(0,8).equals("https://")){
+                    String nuevo_enlace = EnlacePrendaDialog.getText().toString();
+                    Uri uri = Uri.parse(nuevo_enlace);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    startActivity(intent);
+                    dialog.dismiss();
+                }else{
+                    String nuevo_enlace = "https://"+EnlacePrendaDialog.getText().toString();
+                    Uri uri = Uri.parse(nuevo_enlace);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    startActivity(intent);
+                    dialog.dismiss();
+                }
             }
         });
 

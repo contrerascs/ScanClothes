@@ -14,11 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class ForgotPassword extends AppCompatActivity {
 
     Button Recuperar;
     EditText Correo;
+
+    DatabaseReference BASE_DE_DATOS_ADMINISTRADORES;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class ForgotPassword extends AppCompatActivity {
             Correo.setError("CORREO INVALIDO");
             return;
         }
+
         sendEmail(email);
     }
 
