@@ -45,10 +45,12 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AgregarOtono extends AppCompatActivity {
     EditText NombreOtono, DescripcionPrendaOto, LinkDePrendaOto;
-    TextView VistaOtono;
+    TextView VistaOtono, idOtono;
     ImageView ImagenPrendaOto;
     Button AgregarPrendaOto;
 
@@ -61,7 +63,7 @@ public class AgregarOtono extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     ProgressDialog progressDialog;
-    String rNombre,rImagen,rDescripcion,rVista;
+    String rNombre,rImagen,rDescripcion,rId,rVista;
     //int CODIGO_DE_SOLICITTUD_IMAGEN = 5;
 
     @Override
@@ -75,6 +77,7 @@ public class AgregarOtono extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        idOtono = findViewById(R.id.idOtono);
         VistaOtono = findViewById(R.id.VistaOtono);
         NombreOtono = findViewById(R.id.NombreOtoño);
         ImagenPrendaOto = findViewById(R.id.ImagenPrendaOto);
@@ -93,12 +96,14 @@ public class AgregarOtono extends AppCompatActivity {
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rDescripcion = intent.getString("DescripcionEnviada");
+            rId = intent.getString("IdEnviado");
             rVista = intent.getString("VistaEnviada");
 
             //SETEAR LOS DATOS EN LOS TEXTVIEW
             NombreOtono.setText(rNombre);
             VistaOtono.setText(rVista);
             DescripcionPrendaOto.setText(rDescripcion);
+            idOtono.setText(rId);
             Picasso.get().load(rImagen).into(ImagenPrendaOto);
 
             //CAMBIAR EL NOMBRE EN ACTIONBAR
@@ -188,7 +193,7 @@ public class AgregarOtono extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("INVIERNO");
         //CONSULTA
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -234,11 +239,17 @@ public class AgregarOtono extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
+                            String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss",
+                                    Locale.getDefault()).format(System.currentTimeMillis());
+
+                            idOtono.setText(ID);
+                            String mId = idOtono.getText().toString();
+
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             String mVista = VistaOtono.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Otono otono = new Otono(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid(),mLinkPrenda);
+                            Otono otono = new Otono(mNombre, mDescripcion,downloadURI.toString(),user.getUid(),mLinkPrenda,mNombre+"/"+mId,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(otono);

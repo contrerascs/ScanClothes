@@ -45,11 +45,13 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AgregarInvierno extends AppCompatActivity {
 
     EditText NombreInvierno, DescripcionPrendaInv, LinkDePrendaInv;
-    TextView VistaInvierno;
+    TextView VistaInvierno, idInvierno;
     ImageView ImagenPrendaInv;
     Button AgregarPrendaInv;
 
@@ -62,7 +64,7 @@ public class AgregarInvierno extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     ProgressDialog progressDialog;
-    String rNombre,rImagen,rDescripcion,rVista;
+    String rNombre,rImagen,rDescripcion,rId,rVista;
     //int CODIGO_DE_SOLICITTUD_IMAGEN = 5;
 
     @Override
@@ -76,6 +78,7 @@ public class AgregarInvierno extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        idInvierno = findViewById(R.id.idInvierno);
         VistaInvierno = findViewById(R.id.VistaInvierno);
         NombreInvierno = findViewById(R.id.NombreInvierno);
         ImagenPrendaInv = findViewById(R.id.ImagenPrendaInv);
@@ -94,12 +97,14 @@ public class AgregarInvierno extends AppCompatActivity {
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rDescripcion = intent.getString("DescripcionEnviada");
+            rId = intent.getString("IdEnviado");
             rVista = intent.getString("VistaEnviada");
 
             //SETEAR LOS DATOS EN LOS TEXTVIEW
             NombreInvierno.setText(rNombre);
             VistaInvierno.setText(rVista);
             DescripcionPrendaInv.setText(rDescripcion);
+            idInvierno.setText(rId);
             Picasso.get().load(rImagen).into(ImagenPrendaInv);
 
             //CAMBIAR EL NOMBRE EN ACTIONBAR
@@ -192,7 +197,7 @@ public class AgregarInvierno extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("INVIERNO");
         //CONSULTA
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -238,11 +243,16 @@ public class AgregarInvierno extends AppCompatActivity {
 
                             Uri downloadURI = uriTask.getResult();
 
+                            String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss",
+                                    Locale.getDefault()).format(System.currentTimeMillis());
+
+                            idInvierno.setText(ID);
+                            String mId = idInvierno.getText().toString();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             String mVista = VistaInvierno.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Invierno invierno = new Invierno(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid(),mLinkPrenda);
+                            Invierno invierno = new Invierno(mNombre, mDescripcion,downloadURI.toString(),user.getUid(),mLinkPrenda,mNombre+"/"+mId,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(invierno);
@@ -284,6 +294,7 @@ public class AgregarInvierno extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
+                        //OBTENER URI DE IMAGEN
                         RutaArchivoUri = data.getData();
                         ImagenPrendaInv.setImageURI(RutaArchivoUri);
                     }else{

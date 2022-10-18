@@ -27,6 +27,18 @@
 
             </TextView>
 
+            <!--id-->
+            <TextView
+                android:id="@+id/idInvierno"
+                android:text="@string/idInvierno"
+                android:textSize="18dp"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
             <!--NOMBRE DE LA PRENDA-->
             <EditText
                 android:id="@+id/NombreInvierno"

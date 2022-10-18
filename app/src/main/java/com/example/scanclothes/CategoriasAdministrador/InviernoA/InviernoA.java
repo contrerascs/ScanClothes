@@ -111,7 +111,7 @@ public class InviernoA extends AppCompatActivity {
 
                     @Override
                     public void OnIntemLongClick(View view, int position) {
-
+                        final String id = getItem(position).getId();
                         final String Nombre = getItem(position).getNombre();
                         final String Imagen = getItem(position).getImagen();
 
@@ -129,11 +129,12 @@ public class InviernoA extends AppCompatActivity {
                                     intent.putExtra("NombreEnviado", Nombre);
                                     intent.putExtra("ImagenEnviada", Imagen);
                                     intent.putExtra("DescripcionEnviada", Descripcion);
+                                    intent.putExtra("IdEnviado",id);
                                     intent.putExtra("VistaEnviada", vistaString);
                                     startActivity(intent);
                                 }
                                 if (i == 1) {
-                                    EliminarDatos(Nombre, Imagen);
+                                    EliminarDatos(id, Imagen);
                                 }
                             }
                         });
@@ -159,7 +160,7 @@ public class InviernoA extends AppCompatActivity {
         }
     }
 
-    private void EliminarDatos(final String NombreActual, final String ImagenActual){
+    private void EliminarDatos(final String idActual, final String ImagenActual){
         AlertDialog.Builder builder = new AlertDialog.Builder(InviernoA.this);
         builder.setTitle("Eliminar");
         builder.setMessage("¿Desea elimminar imagen?");
@@ -168,7 +169,7 @@ public class InviernoA extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //ELIMINAR IMAGEN DE LA BASE DE DATOS
-                Query query = mRef.orderByChild("nombre").equalTo(NombreActual);
+                Query query = mRef.orderByChild("id").equalTo(idActual);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

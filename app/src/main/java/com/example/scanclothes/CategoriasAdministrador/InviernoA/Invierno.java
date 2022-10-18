@@ -6,19 +6,29 @@ public class Invierno {
     private String imagen;
     private String id_administrador;
     private String enlace;
+    private String id;
     private int vistas;
 
     public Invierno() {
 
     }
 
-    public Invierno(String nombre, String descripcion, String imagen, int vistas, String id_administrador,String enlace) {
+    public Invierno(String nombre, String descripcion, String imagen, String id_administrador, String enlace, String id, int vistas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
-        this.vistas = vistas;
         this.id_administrador = id_administrador;
         this.enlace = enlace;
+        this.id = id;
+        this.vistas = vistas;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {

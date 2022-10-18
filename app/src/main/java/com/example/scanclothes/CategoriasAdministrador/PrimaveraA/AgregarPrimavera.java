@@ -45,10 +45,12 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AgregarPrimavera extends AppCompatActivity {
     EditText NombrePrimavera, DescripcionPrendaPri, LinkDePrendaPri;
-    TextView VistaPrimavera;
+    TextView VistaPrimavera, idPrimavera;
     ImageView ImagenPrendaPri;
     Button AgregarPrendaPri;
 
@@ -61,7 +63,7 @@ public class AgregarPrimavera extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     ProgressDialog progressDialog;
-    String rNombre,rImagen,rDescripcion,rVista;
+    String rNombre,rImagen,rDescripcion,rId,rVista;
     //int CODIGO_DE_SOLICITTUD_IMAGEN = 5;
 
     @Override
@@ -75,6 +77,7 @@ public class AgregarPrimavera extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        idPrimavera = findViewById(R.id.idPrimavera);
         VistaPrimavera = findViewById(R.id.VistaPrimavera);
         NombrePrimavera = findViewById(R.id.NombrePrimavera);
         ImagenPrendaPri = findViewById(R.id.ImagenPrendaPri);
@@ -93,12 +96,14 @@ public class AgregarPrimavera extends AppCompatActivity {
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rDescripcion = intent.getString("DescripcionEnviada");
+            rId = intent.getString("IdEnviado");
             rVista = intent.getString("VistaEnviada");
 
             //SETEAR LOS DATOS EN LOS TEXTVIEW
             NombrePrimavera.setText(rNombre);
             VistaPrimavera.setText(rVista);
             DescripcionPrendaPri.setText(rDescripcion);
+            idPrimavera.setText(rId);
             Picasso.get().load(rImagen).into(ImagenPrendaPri);
 
             //CAMBIAR EL NOMBRE EN ACTIONBAR
@@ -189,7 +194,7 @@ public class AgregarPrimavera extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("INVIERNO");
         //CONSULTA
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -234,12 +239,17 @@ public class AgregarPrimavera extends AppCompatActivity {
                             while(!uriTask.isSuccessful());
 
                             Uri downloadURI = uriTask.getResult();
+                            String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss",
+                                    Locale.getDefault()).format(System.currentTimeMillis());
+
+                            idPrimavera.setText(ID);
+                            String mId = idPrimavera.getText().toString();
 
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             String mVista = VistaPrimavera.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Primavera primavera = new Primavera(mNombre, mDescripcion,downloadURI.toString(),VISTA,user.getUid(),mLinkPrenda);
+                            Primavera primavera = new Primavera(mNombre, mDescripcion,downloadURI.toString(),user.getUid(),mLinkPrenda,mNombre+"/"+mId,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(primavera);

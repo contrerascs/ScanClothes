@@ -60,6 +60,7 @@
     <string name="Vista">Vista</string>
 
     <!--AGREGAR PRENDA DE INVIERNO-->
+    <string name="idInvierno"> -- </string>
     <string name="NombreTXTInvierno">Nombre de la prenda</string>
     <string name="NombreInvierno">Escribe aquí el nombre</string>
     <string name="VistaInvierno">0</string>
@@ -73,6 +74,7 @@
     <string name="DescripcionInviernoItem"> -- </string>
 
     <!--AGREGAR PRENDA DE OTOÑO-->
+    <string name="idOtono"> -- </string>
     <string name="NombreTXTOtoño">Nombre de la prenda</string>
     <string name="NombreOtoño">Escribe aquí el nombre</string>
     <string name="VistaOtoño">0</string>
@@ -86,6 +88,7 @@
     <string name="DescripcionOtoñoItem"> -- </string>
 
     <!--AGREGAR PRENDA DE PRIMAVERA-->
+    <string name="idPrimavera"> -- </string>
     <string name="NombreTXTPrimavera">Nombre de la prenda</string>
     <string name="NombrePrimavera">Escribe aquí el nombre</string>
     <string name="VistaPrimavera">0</string>
@@ -99,6 +102,7 @@
     <string name="DescripcionPrimaveraItem"> -- </string>
 
     <!--AGREGAR PRENDA DE VERANO-->
+    <string name="idVerano"> -- </string>
     <string name="NombreTXTVerano">Nombre de la prenda</string>
     <string name="NombreVerano">Escribe aquí el nombre</string>
     <string name="VistaVerano">0</string>
