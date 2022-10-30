@@ -5,7 +5,7 @@
     android:padding="10dp"
     android:layout_gravity="center"
     android:layout_width="300dp"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:background="@color/white">
 
     <TextView
@@ -23,7 +23,7 @@
         android:id="@+id/EnlacePrendaDialog"
         android:text="@string/EnlacePrendaDialog"
         android:layout_width="275dp"
-        android:layout_height="35dp"
+        android:layout_height="match_parent"
         android:textSize="20sp"
         android:textColor="#000"
         android:gravity="center">

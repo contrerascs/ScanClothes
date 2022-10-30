@@ -167,6 +167,11 @@
     <string name="IrNavegador">Abrir En Navegador</string>
     <string name="CopiarEnlace">Copiar Enlace</string>
 
+    <!--DIALOG VISUALIZAR PRENDA-->
+    <string name="ProbandoRetrofit">Probando Retrofit</string>
+    <string name="Fact"> -- </string>
+    <string name="Length"> -- </string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

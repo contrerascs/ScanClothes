@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_gravity="center"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/ProbandoRetrofit"
+        android:text="@string/ProbandoRetrofit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center">
+
+    </TextView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/Fact"
+        android:text="@string/Fact"
+        android:layout_width="275dp"
+        android:layout_height="match_parent"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center">
+
+    </TextView>
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/Length"
+        android:text="@string/Length"
+        android:layout_width="275dp"
+        android:layout_height="match_parent"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center">
+
+    </TextView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

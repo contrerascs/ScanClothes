@@ -22,6 +22,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scanclothes.R;
+import com.example.scanclothes.Retrofit.APIClient;
+import com.example.scanclothes.Retrofit.APIInterface;
+import com.example.scanclothes.Retrofit.Model;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -29,6 +32,10 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetalleImagen extends AppCompatActivity {
 
@@ -82,7 +89,7 @@ public class DetalleImagen extends AppCompatActivity {
         VisualizarEnProbador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetalleImagen.this,"Probador Virtual",Toast.LENGTH_SHORT).show();
+                VisualizarEnProbador();
             }
         });
 
@@ -92,6 +99,43 @@ public class DetalleImagen extends AppCompatActivity {
                 ObtenerPrenda(Link);
             }
         });
+    }
+
+    private void VisualizarEnProbador() {
+        //CAMBIO DE LETRA
+        String ubicacion = "fuentes/CaviarDreams.ttf";
+        Typeface tf = Typeface.createFromAsset(DetalleImagen.this.getAssets(),
+                ubicacion);
+
+        TextView factText, lenghtText;
+        APIInterface apiInterface;
+        dialog.setContentView(R.layout.dialog_visualizar_prenda);
+
+        factText = (TextView) dialog.findViewById(R.id.Fact);
+        lenghtText = (TextView) dialog.findViewById(R.id.Length);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+
+        Call<Model> call = apiInterface.getModel();
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, Response<Model> response) {
+                if(!response.isSuccessful()){
+                    factText.setText("Codigo: "+response.code());
+                    lenghtText.setText("Codigo: "+response.code());
+                    return;
+                }
+                Model model = response.body();
+                factText.setText("Fact: "+model.getFact());
+                lenghtText.setText("Length: "+model.getLength());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                factText.setText(t.getMessage());
+                lenghtText.setText(t.getMessage());
+            }
+        });
+        dialog.show();
     }
 
     private void ObtenerPrenda(String Enlace) {
