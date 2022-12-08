@@ -46,13 +46,14 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class AgregarInvierno extends AppCompatActivity {
 
     EditText NombreInvierno, DescripcionPrendaInv, LinkDePrendaInv;
     TextView VistaInvierno, idInvierno;
-    ImageView ImagenPrendaInv;
+    ImageView ImagenPrendaInv, ScanerPrendaInv;
     Button AgregarPrendaInv;
 
     String RutaDeAlmacenamiento = "Invierno_Subida/";
@@ -65,6 +66,9 @@ public class AgregarInvierno extends AppCompatActivity {
 
     ProgressDialog progressDialog;
     String rNombre,rImagen,rDescripcion,rId,rVista;
+
+    private ArrayList<Uri> imagesUri;
+
     //int CODIGO_DE_SOLICITTUD_IMAGEN = 5;
 
     @Override
@@ -78,10 +82,13 @@ public class AgregarInvierno extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        imagesUri = new ArrayList<>();
+
         idInvierno = findViewById(R.id.idInvierno);
         VistaInvierno = findViewById(R.id.VistaInvierno);
         NombreInvierno = findViewById(R.id.NombreInvierno);
         ImagenPrendaInv = findViewById(R.id.ImagenPrendaInv);
+        ScanerPrendaInv = findViewById(R.id.ScanerPrendaInv);
         DescripcionPrendaInv = findViewById(R.id.DescripcionPrendaInv);
         AgregarPrendaInv = findViewById(R.id.AgregarPrendaInv);
         LinkDePrendaInv = findViewById(R.id.LinkDePrendaInv);
@@ -123,6 +130,19 @@ public class AgregarInvierno extends AppCompatActivity {
                 ObtenerImagenGaleria.launch(intent);
             }
         });
+
+        ScanerPrendaInv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //SDK 31
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                //intentLancher.launch(intent);
+            }
+        });
+
 
         AgregarPrendaInv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,4 +323,30 @@ public class AgregarInvierno extends AppCompatActivity {
                 }
             }
     );
+    /*
+    //Obtener Imagenes de la galeria
+    private ActivityResultLauncher<Intent> intentLancher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        //OBTENER URI DE LAS IMAGENES
+                        Uri imageUri;
+                        if(result.getData().getClipData() != null){
+                            //SELECCIONAR MULTIPLES IMAGENES
+                            int count = result.getData().getClipData().getItemCount();
+                            for(int i=0; i<count;i++){
+                                imageUri = result.getData().getClipData().getItemAt(i).getUri();
+                                imagesUri.add(imageUri);
+                            }
+                            ScanerPrendaInv.setImageURI(imagesUri.get(0));
+                        }
+                    }else{
+                        Toast.makeText(AgregarInvierno.this,"Cancelado",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    ); */
 }

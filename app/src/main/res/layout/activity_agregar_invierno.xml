@@ -30,12 +30,12 @@
             <!--id-->
             <TextView
                 android:id="@+id/idInvierno"
-                android:text="@string/idInvierno"
-                android:textSize="18dp"
-                android:textColor="#000"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/idInvierno"
+                android:textColor="#000"
+                android:textSize="18dp">
 
             </TextView>
 
@@ -109,6 +109,17 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:src="@drawable/imagen_ico">
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+        <!--ICONO PARA ABRIR GALERIA-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ScanerPrendaInv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/scan_ico">
 
         </androidx.appcompat.widget.AppCompatImageView>
 

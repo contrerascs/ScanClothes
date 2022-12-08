@@ -52,7 +52,7 @@ public class InicioCliente extends Fragment {
         dialog = new Dialog(getContext());
 
         ListarImagenesVerano();
-        ListarImagenesInvierno();
+        //ListarImagenesInvierno();
 
         return view;
     }
@@ -125,6 +125,7 @@ public class InicioCliente extends Fragment {
         recyclerView.setAdapter(firebaseRecyclerAdapter2);
     }
 
+    /*
     private void ListarImagenesInvierno() {
         reference = firebaseDatabase.getReference("INVIERNO");
         options = new FirebaseRecyclerOptions.Builder<Invierno>().setQuery(reference,Invierno.class).build();
@@ -191,13 +192,14 @@ public class InicioCliente extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
-    }
+    }*/
 
     @Override
     public void onStart() {
         super.onStart();
-        if (firebaseRecyclerAdapter != null){
+        if (firebaseRecyclerAdapter != null && firebaseRecyclerAdapter2 != null){
             firebaseRecyclerAdapter.startListening();
+            firebaseRecyclerAdapter2.startListening();
         }
     }
 }
