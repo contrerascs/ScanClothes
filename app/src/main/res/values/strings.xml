@@ -12,6 +12,7 @@
     <string name="InicioAdmin">Inicio</string>
     <string name="PerfilAdmin">Perfil</string>
     <string name="InventarioAdmin">Inventario</string>
+    <string name="FotogrametríaAdmin">Crear Modelo 3D</string>
     <string name="CerrarSesion">Cerrar Sesión</string>
 
     <!--MENU CLIENTE-->
@@ -171,6 +172,13 @@
     <string name="ProbandoRetrofit">Probando Retrofit</string>
     <string name="Fact"> -- </string>
     <string name="Length"> -- </string>
+
+    <!--FOTOGRAMETRÍA-->
+    <string name="ImagesFL">IMAGENES SELECCIONADAS</string>
+    <string name="SiguienteBTN">SIGUIENTE</string>
+    <string name="AnteriorBTN">ANTERIOR</string>
+    <string name="SeleccionarBTN">SELECCIONAR IMAGENES</string>
+    <string name="CrearModelo3D">CREAR MODELO 3D</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

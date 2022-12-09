@@ -1,21 +1,21 @@
 package com.example.scanclothes;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.example.scanclothes.FragmentosAdministrador.InicioAdmin;
 import com.example.scanclothes.FragmentosAdministrador.InventarioAdmin;
 import com.example.scanclothes.FragmentosAdministrador.PerfilAdmin;
+import com.example.scanclothes.FragmentosAdministrador.ScanAdmin;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -75,6 +75,11 @@ public class MainActivityAdministrador extends AppCompatActivity implements Navi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contairnerA,
                         new InventarioAdmin()).commit();
                     break;
+
+            case R.id.FotogrametriaAdmin:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_contairnerA,
+                        new ScanAdmin()).commit();
+                break;
 
             case R.id.CerrarSesion:
                 CerrarSesion();

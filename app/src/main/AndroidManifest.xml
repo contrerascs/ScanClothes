@@ -16,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".FragmentosAdministrador.Scan_Admin"
-            android:exported="false" />
-        <activity
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity

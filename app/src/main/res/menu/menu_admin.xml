@@ -30,6 +30,14 @@
 
         </item>
 
+        <!--OPCION FOTOGRAMETRÍA-->
+        <item
+            android:id="@+id/FotogrametriaAdmin"
+            android:title="@string/FotogrametríaAdmin"
+            android:icon="@drawable/fotogrametria_ico">
+
+        </item>
+
         <!--OPCION CERRAR SESION-->
         <item
             android:id="@+id/CerrarSesion"

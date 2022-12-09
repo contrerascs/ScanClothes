@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentosAdministrador.Scan_Admin">
+    tools:context=".FragmentosAdministrador.ScanAdmin">
 
     <!--LAS IMAGENES SELECCIONADAS SE MOSTRARÁN AQUÍ-->
     <ImageSwitcher
         android:id="@+id/ImageFLR"
         android:layout_width="match_parent"
-        android:layout_height="600dp">
+        android:layout_height="450dp">
 
     </ImageSwitcher>
 
@@ -45,9 +44,20 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:background="@drawable/btn_personalizado_dos"
-        android:layout_alignParentBottom="true">
+        android:layout_above="@id/CrearModelo3D">
 
     </Button>
 
+    <Button
+        android:layout_marginTop="15dp"
+        android:id="@+id/CrearModelo3D"
+        android:text="@string/CrearModelo3D"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_personalizado_dos"
+        android:layout_alignParentBottom="true">
+
+    </Button>
 
 </RelativeLayout>
