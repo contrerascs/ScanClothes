@@ -51,9 +51,9 @@ import java.util.Locale;
 
 public class AgregarInvierno extends AppCompatActivity {
 
-    EditText NombreInvierno, DescripcionPrendaInv, LinkDePrendaInv;
+    EditText NombreInvierno, DescripcionPrendaInv, LinkDePrendaInv, LinkDeModelo3DInv;
     TextView VistaInvierno, idInvierno;
-    ImageView ImagenPrendaInv, ScanerPrendaInv;
+    ImageView ImagenPrendaInv;
     Button AgregarPrendaInv;
 
     String RutaDeAlmacenamiento = "Invierno_Subida/";
@@ -85,14 +85,13 @@ public class AgregarInvierno extends AppCompatActivity {
         imagesUri = new ArrayList<>();
 
         idInvierno = findViewById(R.id.idInvierno);
-        VistaInvierno = findViewById(R.id.VistaInvierno);
         NombreInvierno = findViewById(R.id.NombreInvierno);
         ImagenPrendaInv = findViewById(R.id.ImagenPrendaInv);
-        ScanerPrendaInv = findViewById(R.id.ScanerPrendaInv);
         DescripcionPrendaInv = findViewById(R.id.DescripcionPrendaInv);
         AgregarPrendaInv = findViewById(R.id.AgregarPrendaInv);
         LinkDePrendaInv = findViewById(R.id.LinkDePrendaInv);
-
+        LinkDeModelo3DInv = findViewById(R.id.LinkDeModelo3DInv);
+        VistaInvierno = findViewById(R.id.VistaInvierno);
         firebaseAuth = FirebaseAuth.getInstance();
         mStorageReference = FirebaseStorage.getInstance().getReference();
         DatabaseReference = FirebaseDatabase.getInstance().getReference(RutaDeBaseDeDatos);
@@ -130,19 +129,6 @@ public class AgregarInvierno extends AppCompatActivity {
                 ObtenerImagenGaleria.launch(intent);
             }
         });
-
-        ScanerPrendaInv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //SDK 31
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                //intentLancher.launch(intent);
-            }
-        });
-
 
         AgregarPrendaInv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,9 +230,10 @@ public class AgregarInvierno extends AppCompatActivity {
         String mNombre = NombreInvierno.getText().toString();
         String mDescripcion = DescripcionPrendaInv.getText().toString();
         String mLinkPrenda = LinkDePrendaInv.getText().toString();
+        String mLinkModelo3D = LinkDeModelo3DInv.getText().toString();
 
         //VALIDAR QUE EL NOMBRE Y LA IMAGEN NO SEAN NULOS
-        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")||mLinkPrenda.equals("")){
+        if (mNombre.equals("")||RutaArchivoUri==null||mDescripcion.equals("")||mLinkPrenda.equals("")||mLinkModelo3D.equals("")){
             Toast.makeText(AgregarInvierno.this,"Por favor complete todos los campos y agregue una imagen",Toast.LENGTH_SHORT).show();
         }else{
             progressDialog.setTitle("Espere por favor");
@@ -272,7 +259,7 @@ public class AgregarInvierno extends AppCompatActivity {
                             String mVista = VistaInvierno.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Invierno invierno = new Invierno(mNombre, mDescripcion,downloadURI.toString(),user.getUid(),mLinkPrenda,mNombre+"/"+mId,VISTA);
+                            Invierno invierno = new Invierno(mNombre, mDescripcion,downloadURI.toString(),user.getUid(),mLinkPrenda, mLinkModelo3D, mNombre+"/"+mId,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(invierno);
@@ -323,30 +310,5 @@ public class AgregarInvierno extends AppCompatActivity {
                 }
             }
     );
-    /*
-    //Obtener Imagenes de la galeria
-    private ActivityResultLauncher<Intent> intentLancher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        //OBTENER URI DE LAS IMAGENES
-                        Uri imageUri;
-                        if(result.getData().getClipData() != null){
-                            //SELECCIONAR MULTIPLES IMAGENES
-                            int count = result.getData().getClipData().getItemCount();
-                            for(int i=0; i<count;i++){
-                                imageUri = result.getData().getClipData().getItemAt(i).getUri();
-                                imagesUri.add(imageUri);
-                            }
-                            ScanerPrendaInv.setImageURI(imagesUri.get(0));
-                        }
-                    }else{
-                        Toast.makeText(AgregarInvierno.this,"Cancelado",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-    ); */
+
 }

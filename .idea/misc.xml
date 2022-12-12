@@ -5,13 +5,15 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/calendario_ico.xml" value="0.1905" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/categoria_ico.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/fotogrametria_ico.xml" value="0.2595" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/imagen_ico.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/inventario_ico.xml" value="0.2595" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/scan_ico.xml" value="0.2595" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable-anydpi/vista_ico_item.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable/btn_personalizado.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/drawable/btn_personalizado_dos.xml" value="0.192" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_invierno.xml" value="0.2" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_otono.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_otono.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_prenda.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_primavera.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_agregar_verano.xml" value="0.24010416666666667" />
@@ -37,6 +39,7 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/activity_verano_cliente.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/carga.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/categorias_dispositivo.xml" value="0.4" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/dialog_crear_modelo_3d.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/dialog_obtener_prenda.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/dialog_ordenar.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/dialog_visualizar_prenda.xml" value="0.25416666666666665" />
@@ -52,7 +55,7 @@
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_perfil_admin.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_registro_admin.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/fragment_scan_admin.xml" value="0.25416666666666665" />
-        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_invierno.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_invierno.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_otono.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_primavera.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/ScanClothes/app/src/main/res/layout/item_verano.xml" value="0.25416666666666665" />

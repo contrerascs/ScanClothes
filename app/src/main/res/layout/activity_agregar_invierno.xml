@@ -70,6 +70,16 @@
 
             </EditText>
 
+            <!--LINK DE LA PRENDA-->
+            <EditText
+                android:id="@+id/LinkDeModelo3DInv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/LinkDeModelo3DInv">
+
+            </EditText>
+
             <!--VISTAS-->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -112,16 +122,6 @@
 
         </androidx.appcompat.widget.AppCompatImageView>
 
-        <!--ICONO PARA ABRIR GALERIA-->
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ScanerPrendaInv"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/scan_ico">
-
-        </androidx.appcompat.widget.AppCompatImageView>
 
         <!--BOTON PARA AGREGAR PRENDA-->
         <Button

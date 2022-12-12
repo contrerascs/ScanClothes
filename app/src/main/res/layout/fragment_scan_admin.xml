@@ -49,14 +49,14 @@
     </Button>
 
     <Button
-        android:layout_marginTop="15dp"
         android:id="@+id/CrearModelo3D"
-        android:text="@string/CrearModelo3D"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
         android:background="@drawable/btn_personalizado_dos"
-        android:layout_alignParentBottom="true">
+        android:text="@string/CrearModelo3D"
+        android:textColor="@color/white">
 
     </Button>
 

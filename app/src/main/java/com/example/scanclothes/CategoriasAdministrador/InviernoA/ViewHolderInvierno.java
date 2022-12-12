@@ -54,7 +54,7 @@ public class ViewHolderInvierno extends RecyclerView.ViewHolder {
         //CONEXION CON EL ITEM
         ImagenInvierno = mView.findViewById(R.id.ImagenInviernoItem);
         NombreImagenInvierno = mView.findViewById(R.id.NombreImagenInviernoItem);
-        VistaInviernos = mView.findViewById(R.id.VistaInviernoItem);
+        //VistaInviernos = mView.findViewById(R.id.VistaInviernoItem);
         DescripcionInvierno = mView.findViewById(R.id.DescripcionInviernoItem);
 
         NombreImagenInvierno.setText(nombre);
@@ -62,7 +62,7 @@ public class ViewHolderInvierno extends RecyclerView.ViewHolder {
 
         //CONVERTIR A STRING EL PARAMETRO VISTA
         String VistaString = String.valueOf(vista);
-        VistaInviernos.setText(VistaString);
+        //VistaInviernos.setText(VistaString);
 
         //CONTROLAR POSIBLES ERRORES
         try{

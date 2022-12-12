@@ -192,7 +192,7 @@ public class AgregarPrimavera extends AppCompatActivity {
         final String nombreActualizar = NombrePrimavera.getText().toString();
         final String descripcionActualizar = DescripcionPrendaPri.getText().toString();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("INVIERNO");
+        DatabaseReference databaseReference = firebaseDatabase.getReference("PRIMAVERA");
         //CONSULTA
         Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {

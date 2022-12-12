@@ -166,7 +166,7 @@ public class VeranoA extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //ELIMINAR IMAGEN DE LA BASE DE DATOS
-                Query query = mRef.orderByChild("nombre").equalTo(idActual);
+                Query query = mRef.orderByChild("id").equalTo(idActual);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

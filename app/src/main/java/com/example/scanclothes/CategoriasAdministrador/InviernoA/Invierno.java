@@ -6,6 +6,7 @@ public class Invierno {
     private String imagen;
     private String id_administrador;
     private String enlace;
+    private String modelo3D;
     private String id;
     private int vistas;
 
@@ -13,12 +14,13 @@ public class Invierno {
 
     }
 
-    public Invierno(String nombre, String descripcion, String imagen, String id_administrador, String enlace, String id, int vistas) {
+    public Invierno(String nombre, String descripcion, String imagen, String id_administrador, String enlace, String modelo3D, String id, int vistas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.id_administrador = id_administrador;
         this.enlace = enlace;
+        this.modelo3D = modelo3D;
         this.id = id;
         this.vistas = vistas;
     }
@@ -77,5 +79,13 @@ public class Invierno {
 
     public void setEnlace(String enlace) {
         this.enlace = enlace;
+    }
+
+    public String getModelo3D() {
+        return modelo3D;
+    }
+
+    public void setModelo3D(String modelo3D) {
+        this.modelo3D = modelo3D;
     }
 }

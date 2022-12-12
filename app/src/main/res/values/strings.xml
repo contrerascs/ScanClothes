@@ -68,6 +68,7 @@
     <string name="AgregarPrendaInv">Agregar Prenda</string>
     <string name="DescripcionPrendaInv">Agregar Descripcion</string>
     <string name="LinkDePrendaInv">Agrega el enlace de la prenda</string>
+    <string name="LinkDeModelo3DInv">Agrega el enlace de tu Modelo 3D</string>
 
     <!--ITEM DE AGREGAR PRENDA DE INVIERNO-->
     <string name="NombreImagenInviernoItem"> -- </string>
@@ -179,6 +180,14 @@
     <string name="AnteriorBTN">ANTERIOR</string>
     <string name="SeleccionarBTN">SELECCIONAR IMAGENES</string>
     <string name="CrearModelo3D">CREAR MODELO 3D</string>
+
+    <!--DIALOG CREAR MODELO 3D-->
+    <string name="ProbandoAutodesk">Realizando Fotogrametría</string>
+    <string name="AvanzarBTN"> Avanzar </string>
+    <string name="Respuesta"> -- </string>
+    <string name="Progress"> -- </string>
+    <string name="photosceneLink"> -- </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
